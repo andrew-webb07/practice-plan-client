@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
+import { NavBar } from "./nav/NavBar";
+import { ApplicationViews } from "./ApplicationViews";
 
 export const PracticePlan = () => {
 
@@ -12,7 +14,8 @@ return (
             if (localStorage.getItem("practice-plan_user_token")) {
             return (
                 <>
-                <h1>Practice Plan</h1>
+                    <NavBar />
+                    <ApplicationViews />
                 </>
             );
             } else {
