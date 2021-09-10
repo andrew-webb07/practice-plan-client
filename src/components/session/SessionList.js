@@ -67,7 +67,8 @@ export const SessionList = () => {
             <>
             <PracticePlanDetail />
             <div>{session.date} {session.length_of_session} minutes</div>
-            <div>{session.notes}</div>
+            <div>{session.length_of_each_exercise}</div>
+            <div>Notes: {session.notes}</div>
             </>
         )})}
         </div>
