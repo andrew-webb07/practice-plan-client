@@ -1,12 +1,19 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { SessionProvider } from "./session/SessionProvider"
+import { SessionList } from "./session/SessionList"
 
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <h1>Practice Plan</h1>
-            </Route>
+            <SessionProvider>
+                <Route exact path="/">
+                    <SessionList />
+                </Route>
+                {/* <Route exact path="/sessions/:sessionId(\d+)">
+					<PracticePlanDetails />
+				</Route> */}
+            </SessionProvider>
         </>
     )
 }
