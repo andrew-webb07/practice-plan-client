@@ -1,30 +1,34 @@
 import React, { useContext, useEffect, useState } from "react"
-import { ExerciseContext } from "./ExerciseProvider"
-import { useHistory, Link } from "react-router-dom"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { useHistory, Link, useParams } from "react-router-dom"
 import { PracticePlanContext } from "../practicePlans/PracticePlansProvider";
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-export const ExerciseList = () => {
-    const { getExercises, exercises, getExercisePlans } = useContext(ExerciseContext)
-    const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
+export const PracticePlanDetail = () => {
+    const { getPracticePlan, getPracticePlans, practicePlans} = useContext(PracticePlanContext)
+    const [ practicePlan, setPracticePlan ] = useState({})
     const history = useHistory()
-    // const [exercisePlans, setExercisePlans] = useState([])
+    const {practicePlanId} = useParams()
+
 
     useEffect(() => {
-        getExercises()
-        getPracticePlans()    
-    }, [])
-
+        getPracticePlans()
+        getPracticePlan(practicePlanId).then(practicePlan => {
+            setPracticePlan(practicePlan)
+        })    
+    }, [practicePlanId])
     return (
         <>
-        <h1>Exercises</h1>
-        <div>
-        {exercises.map(exercise => {
-            const ExerciseDetail = (props) => {
-                const {
-                buttonLabel,
-                className
-                } = props;
+            <h1>Practice Plan Detail</h1>
+            <div>
+                <div>User: {practicePlan.player?.user.username}</div>
+                <div>Plan: {practicePlan.title}</div>
+                <div>{practicePlan.description}</div>
+                {practicePlan?.exercises?.map(exercise => {
+                const ExerciseDetail = (props) => {
+                    const {
+                    buttonLabel,
+                    className
+                    } = props;
 
                 // getExercisePlans(exercise).then((res) => {setExercisePlans(res)})
             
@@ -44,7 +48,7 @@ export const ExerciseList = () => {
   
                 return (
                 <div>
-                    <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{exercise.title}</strong></u></div>
+                    <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>Exercise: {exercise.title}</strong></u></div>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
                     <ModalBody>
@@ -72,8 +76,7 @@ export const ExerciseList = () => {
                 <div className="exercise"><ExerciseDetail /></div>
             </>
         )})}
-        </div>
-        <button className="practicePlan-button" onClick={() => history.push("/exercise/create")}>Create New Exercise?</button>
+            </div>
         </>
     )
 }
