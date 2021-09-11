@@ -1,22 +1,22 @@
 import React, { useState } from "react"
 
-export const ExerciseContext = React.createContext()
+export const CategoryContext = React.createContext()
 
-export const ExerciseProvider = (props) => {
-    const [ exercises, setExercises ] = useState([])
+export const CategoryProvider = (props) => {
+    const [ categories, setCategories ] = useState([])
 
-    const getExercises = () => {
-        return fetch("http://localhost:8000/exercises", {
+    const getCategories = () => {
+        return fetch("http://localhost:8000/categories", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
         })
             .then(response => response.json())
-            .then(setExercises)
+            .then(setCategories)
     }
 
-    const getExercise = (exerciseId) => {
-        return fetch(`http://localhost:8000/exercises/${exerciseId}`, {
+    const getCategory = (categoryId) => {
+        return fetch(`http://localhost:8000/categories/${categoryId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -24,40 +24,40 @@ export const ExerciseProvider = (props) => {
             .then(response => response.json())
     }
 
-    const createExercise = (exercise) => {
-        return fetch("http://localhost:8000/exercises", { 
+    const createCategory = (category) => {
+        return fetch("http://localhost:8000/categories", { 
             method: "POST",
             headers: {"Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
                       "Content-Type": "application/json"               
             },
-            body: JSON.stringify(exercise)
-        }).then(getExercises)
+            body: JSON.stringify(category)
+        }).then(getCategories)
     }
 
-    const editExercise = (exercise) => {
-        return fetch(`http://localhost:8000/exercises/${exercise.id}`, { 
+    const editCategory = (category) => {
+        return fetch(`http://localhost:8000/categories/${category.id}`, { 
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
                 "Content-Type": "application/json"               
             },
-            body: JSON.stringify(exercise)
-        }).then(getExercises)
+            body: JSON.stringify(category)
+        }).then(getCategories)
     }
 
-    const deleteExercise = (exerciseId) => {
-        return fetch(`http://localhost:8000/exercises/${exerciseId}`, {
+    const deleteCategory = (categoryId) => {
+        return fetch(`http://localhost:8000/categories/${categoryId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
         })
-        .then(getExercises)
+        .then(getCategories)
     }
 
     return (
-        <ExerciseContext.Provider value={{ exercises, getExercises, createExercise, editExercise, getExercise, deleteExercise}} >
+        <CategoryContext.Provider value={{ categories, getCategories, createCategory, editCategory, getCategory, deleteCategory}} >
             { props.children }
-        </ExerciseContext.Provider>
+        </CategoryContext.Provider>
     )
 }
