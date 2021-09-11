@@ -51,6 +51,7 @@ export const ExerciseList = () => {
                     <h3>{exercise.title}</h3>
                         <div>Player: {exercise.player.user.username}</div>
                         <div>Description: {exercise.description}</div>
+                        <div>Category: {exercise.category.label}</div>
                         <div>Example: {exercise.example_picture}</div>
                     <h4>Practice Plans Exercise Is On</h4>
                     {exercisePracticePlans.map(exercisePlan => {

@@ -6,6 +6,7 @@ import { ExerciseList } from "./exercise/ExerciseList"
 import { ExerciseProvider } from "./exercise/ExerciseProvider"
 import { PracticePlanProvider } from "./practicePlans/PracticePlansProvider"
 import { PracticePlanDetail } from "./practicePlans/PracticePlanDetail"
+import { PracticePlanList } from "./practicePlans/PracticePlanList"
 
 export const ApplicationViews = () => {
     return (
@@ -21,6 +22,9 @@ export const ApplicationViews = () => {
                     </Route>
                     <Route exact path="/practiceplans/:practicePlanId(\d+)">
                         <PracticePlanDetail />
+                    </Route>
+                    <Route exact path="/practiceplans">
+                        <PracticePlanList />
                     </Route>
                     </PracticePlanProvider>
                 </ExerciseProvider>
