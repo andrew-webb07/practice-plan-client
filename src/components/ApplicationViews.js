@@ -9,6 +9,7 @@ import { PracticePlanDetail } from "./practicePlans/PracticePlanDetail"
 import { PracticePlanList } from "./practicePlans/PracticePlanList"
 import { CategoryProvider } from "./category/CategoryProvider"
 import { CategoryForm } from "./category/CategoryForm"
+import { CategoryList } from "./category/CategoryList"
 
 export const ApplicationViews = () => {
     return (
@@ -31,6 +32,7 @@ export const ApplicationViews = () => {
                             </Route>
                             <Route exact path="/categories">
                                 <CategoryForm />
+                                <CategoryList />
                             </Route>
                         </CategoryProvider>
                     </PracticePlanProvider>
