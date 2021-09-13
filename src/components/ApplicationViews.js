@@ -5,12 +5,13 @@ import { SessionList } from "./session/SessionList"
 import { ExerciseList } from "./exercise/ExerciseList"
 import { ExerciseForm } from "./exercise/ExerciseForm"
 import { ExerciseProvider } from "./exercise/ExerciseProvider"
-import { PracticePlanProvider } from "./practicePlans/PracticePlansProvider"
+import { PracticePlanProvider } from "./practicePlans/PracticePlanProvider"
 import { PracticePlanDetail } from "./practicePlans/PracticePlanDetail"
 import { PracticePlanList } from "./practicePlans/PracticePlanList"
 import { CategoryProvider } from "./category/CategoryProvider"
 import { CategoryForm } from "./category/CategoryForm"
 import { CategoryList } from "./category/CategoryList"
+import { PracticePlanForm } from "./practicePlans/PracticePlanForm"
 
 export const ApplicationViews = () => {
     return (
@@ -37,6 +38,12 @@ export const ApplicationViews = () => {
                             </Route>
                             <Route exact path="/exercises/create">
                                 <ExerciseForm />
+                            </Route>
+                            <Route exact path="/practiceplans/create">
+                                <PracticePlanForm />
+                            </Route>
+                            <Route exact path="/practiceplans/edit/:practicePlanId(\d+)">
+                                <PracticePlanForm />
                             </Route>
                         </CategoryProvider>
                     </PracticePlanProvider>

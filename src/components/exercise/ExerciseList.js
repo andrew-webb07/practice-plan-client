@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { ExerciseContext } from "./ExerciseProvider"
 import { useHistory, Link } from "react-router-dom"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { PracticePlanContext } from "../practicePlans/PracticePlansProvider";
+import { PracticePlanContext } from "../practicePlans/PracticePlanProvider";
 
 export const ExerciseList = () => {
     const { getExercises, exercises, getExercisePlans } = useContext(ExerciseContext)

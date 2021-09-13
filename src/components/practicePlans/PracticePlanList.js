@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, Link, useParams } from "react-router-dom"
-import { PracticePlanContext } from "../practicePlans/PracticePlansProvider";
+import { PracticePlanContext } from "./PracticePlanProvider";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export const PracticePlanList = () => {
-    const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
+    const { getPracticePlans, practicePlans, deletePracticePlan } = useContext(PracticePlanContext)
     const history = useHistory()
 
     useEffect(() => {
@@ -28,6 +28,9 @@ export const PracticePlanList = () => {
                     return (
                     <div>
                         <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{practicePlan.title}</strong></u></div>
+                        <button onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
+                            <button onClick={() => {history.push("/practiceplans")
+                                deletePracticePlan(practicePlan.id)}}>Delete</button>
                         <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>
@@ -55,7 +58,7 @@ export const PracticePlanList = () => {
                 )
             })}
             <div>
-            <button className="practicePlan-button" onClick={() => history.push("/practiceplan/create")}>Create New Practice Plan?</button>
+            <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create New Practice Plan?</button>
             </div>
         </>
     )
