@@ -23,9 +23,9 @@ export const SessionList = () => {
         <>
         <h1 className="header">Practice Plan</h1>
         <div className="practicePlan-buttons">
-            <button className="practicePlan-button" onClick={() => history.push("/session/create")}>Schedule Session?</button>
-            <button className="practicePlan-button" onClick={() => history.push("/practiceplan/create")}>Create Practice Plan?</button>
-            <button className="practicePlan-button" onClick={() => history.push("/exercise/create")}>Create Practice Exercise?</button>
+            <button className="practicePlan-button" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
+            <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create Practice Plan?</button>
+            <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create Practice Exercise?</button>
         </div>
         <div className="sessions">
             <h2>Scheduled Sessions</h2>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, Link, useParams } from "react-router-dom"
-import { PracticePlanContext } from "../practicePlans/PracticePlansProvider";
+import { PracticePlanContext } from "./PracticePlanProvider";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export const PracticePlanDetail = () => {

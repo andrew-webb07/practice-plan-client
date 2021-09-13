@@ -76,7 +76,7 @@ export const ExerciseForm = () => {
                     onChange={handleControlledInputChange}></textarea>
                 </div>
             </fieldset>
-            <fieldset className="postUpload postFormSet ">
+            <fieldset>
                 <label htmlFor="examplePicture">Example of Exercise: </label>
 				<input type="file" id="examplePicture" className="postFormField" onChange={createExerciseImageString}/>
 			</fieldset>
