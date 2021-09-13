@@ -28,9 +28,6 @@ export const PracticePlanList = () => {
                     return (
                     <div>
                         <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{practicePlan.title}</strong></u></div>
-                        <button onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
-                            <button onClick={() => {history.push("/practiceplans")
-                                deletePracticePlan(practicePlan.id)}}>Delete</button>
                         <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>
@@ -54,6 +51,11 @@ export const PracticePlanList = () => {
                 return (
                     <>
                     <PracticePlanDetail />
+                    {practicePlan.is_creator ? (
+                    <>
+                <button onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
+                <button onClick={() => {history.push("/"); deletePracticePlan(practicePlan.id)}}>Delete</button> </>) : (<> </>)
+                }
                     </>
                 )
             })}

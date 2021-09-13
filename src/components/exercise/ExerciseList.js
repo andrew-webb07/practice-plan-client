@@ -5,7 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { PracticePlanContext } from "../practicePlans/PracticePlanProvider";
 
 export const ExerciseList = () => {
-    const { getExercises, exercises, getExercisePlans } = useContext(ExerciseContext)
+    const { getExercises, exercises, getExercisePlans, deleteExercise } = useContext(ExerciseContext)
     const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     // const [exercisePlans, setExercisePlans] = useState([])
@@ -73,6 +73,11 @@ export const ExerciseList = () => {
             return (
             <>
                 <div className="exercise"><ExerciseDetail /></div>
+                {exercise.is_creator ? (
+                    <>
+                <button onClick={() => {history.push(`/exercises/edit/${exercise.id}`)}}>Edit</button>
+                <button onClick={() => {history.push("/exercises"); deleteExercise(exercise.id)}}>Delete</button> </>) : (<> </>)
+                }
             </>
         )})}
         </div>
