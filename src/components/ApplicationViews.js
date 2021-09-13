@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { SessionProvider } from "./session/SessionProvider"
 import { SessionList } from "./session/SessionList"
+import { SessionForm } from "./session/SessionForm"
 import { ExerciseList } from "./exercise/ExerciseList"
 import { ExerciseForm } from "./exercise/ExerciseForm"
 import { ExerciseProvider } from "./exercise/ExerciseProvider"
@@ -44,6 +45,12 @@ export const ApplicationViews = () => {
                             </Route>
                             <Route exact path="/practiceplans/edit/:practicePlanId(\d+)">
                                 <PracticePlanForm />
+                            </Route>
+                            <Route exact path="/sessions/create">
+                                <SessionForm />
+                            </Route>
+                            <Route exact path="/sessions/edit/:sessionId(\d+)">
+                                <SessionForm />
                             </Route>
                         </CategoryProvider>
                     </PracticePlanProvider>

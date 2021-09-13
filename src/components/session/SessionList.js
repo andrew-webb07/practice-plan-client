@@ -5,7 +5,7 @@ import { useHistory, Link } from "react-router-dom"
 import "./Session.css"
 
 export const SessionList = () => {
-    const { sessions, getSessions } = useContext(SessionContext)
+    const { sessions, getSessions, deleteSession } = useContext(SessionContext)
     const history = useHistory()
     const today = new Date()
     today.setDate(today.getDate() - 1)
@@ -67,8 +67,10 @@ export const SessionList = () => {
             <>
             <PracticePlanDetail />
             <div>{session.date} {session.length_of_session} minutes</div>
-            <div>{session.length_of_each_exercise}</div>
+            <div>Length of Each Exercise: {session.length_of_each_exercise} minutes</div>
             <div>Notes: {session.notes}</div>
+            <button onClick={() => {history.push(`/sessions/edit/${session.id}`)}}>Edit</button>
+            <button onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
             </>
         )})}
         </div>
@@ -112,7 +114,10 @@ export const SessionList = () => {
             <>
             <PracticePlanDetail />
             <div>{session.date} {session.length_of_session} minutes</div>
+            <div>Length of Each Exercise: {session.length_of_each_exercise} minutes</div>
             <div>{session.notes}</div>
+            <button onClick={() => {history.push(`/sessions/edit/${session.id}`)}}>Edit</button>
+            <button onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
             </>
         )})}
         </div>
