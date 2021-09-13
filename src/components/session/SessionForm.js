@@ -30,22 +30,6 @@ export const SessionForm = () => {
         getPracticePlans()       
     }, [])
 
-    const checkForm = () => {
-		if (
-			sessionPracticePlan === undefined ||
-            session.lengthOfSession === undefined ||
-            session.date === undefined ||
-            session.notes === undefined
-		) {
-			return false;
-		} else if (Number.isInteger(parseInt(session.lengthOfSession)) === false ) {
-            return false
-        }
-        else {
-			return true;
-		}
-	};
-
     const handleSaveSession = () => {
         if (sessionPracticePlan === undefined ||
             session.lengthOfSession === undefined ||
