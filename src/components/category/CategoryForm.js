@@ -35,7 +35,8 @@ export const CategoryForm = () => {
     return (
         <form id="categoryForm">
             <div>
-            <fieldset className="postFormSet">
+                <h1>Create a Category</h1>
+            <fieldset>
                 <div>
                     <input type="text" id="label" name="label" required autoFocus placeholder="Type Category Here"
                     onChange={handleControlledInputChange}/>

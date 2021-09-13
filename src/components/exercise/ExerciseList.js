@@ -52,7 +52,9 @@ export const ExerciseList = () => {
                         <div>Player: {exercise.player.user.username}</div>
                         <div>Description: {exercise.description}</div>
                         <div>Category: {exercise.category.label}</div>
-                        <div>Example: {exercise.example_picture}</div>
+                        <div>
+                            <img src={exercise.example_picture}></img>
+                        </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
@@ -74,7 +76,7 @@ export const ExerciseList = () => {
             </>
         )})}
         </div>
-        <button className="practicePlan-button" onClick={() => history.push("/exercise/create")}>Create New Exercise?</button>
+        <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create New Exercise?</button>
         </>
     )
 }

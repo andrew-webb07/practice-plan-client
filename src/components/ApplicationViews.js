@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { SessionProvider } from "./session/SessionProvider"
 import { SessionList } from "./session/SessionList"
 import { ExerciseList } from "./exercise/ExerciseList"
+import { ExerciseForm } from "./exercise/ExerciseForm"
 import { ExerciseProvider } from "./exercise/ExerciseProvider"
 import { PracticePlanProvider } from "./practicePlans/PracticePlansProvider"
 import { PracticePlanDetail } from "./practicePlans/PracticePlanDetail"
@@ -33,6 +34,9 @@ export const ApplicationViews = () => {
                             <Route exact path="/categories">
                                 <CategoryForm />
                                 <CategoryList />
+                            </Route>
+                            <Route exact path="/exercises/create">
+                                <ExerciseForm />
                             </Route>
                         </CategoryProvider>
                     </PracticePlanProvider>
