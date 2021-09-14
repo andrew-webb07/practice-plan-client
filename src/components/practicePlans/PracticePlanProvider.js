@@ -16,6 +16,16 @@ export const PracticePlanProvider = (props) => {
             .then(setPracticePlans)
     }
 
+    const searchPracticePlans = (searchTerms) => {
+        return fetch(`http://localhost:8000/practiceplans?q=${searchTerms}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
+            }
+        })
+        .then(res => res.json())
+        .then(setPracticePlans)
+    }
+
     const getPracticePlan = (practicePlanId) => {
         return fetch(`http://localhost:8000/practiceplans/${practicePlanId}`, {
             headers:{
@@ -68,7 +78,7 @@ export const PracticePlanProvider = (props) => {
 	};
 
     return (
-        <PracticePlanContext.Provider value={{ practicePlans, getPracticePlans, createPracticePlan, editPracticePlan, getPracticePlan, deletePracticePlan, getPracticePlanDetails}} >
+        <PracticePlanContext.Provider value={{ practicePlans, getPracticePlans, createPracticePlan, editPracticePlan, getPracticePlan, deletePracticePlan, getPracticePlanDetails, searchPracticePlans}} >
             { props.children }
         </PracticePlanContext.Provider>
     )
