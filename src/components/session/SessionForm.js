@@ -7,7 +7,7 @@ import { PracticePlanContext } from "../practicePlans/PracticePlanProvider"
 
 export const SessionForm = () => {
     const {createSession, editSession, getSession} = useContext(SessionContext)
-    const {getPracticePlans, practicePlans} = useContext(PracticePlanContext)
+    const {getPracticePlans, practicePlans, searchPracticePlans} = useContext(PracticePlanContext)
     const [ session, setSession ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
@@ -27,7 +27,8 @@ export const SessionForm = () => {
     }
 
     useEffect(() => {
-        getPracticePlans()       
+        getPracticePlans()
+        searchPracticePlans()     
     }, [])
 
     const handleSaveSession = () => {
@@ -81,6 +82,11 @@ export const SessionForm = () => {
         <form id="sessionForm">
             <div>
                 <h1>{sessionId ? "Edit Session" : "Schedule a Session"}</h1>
+                <div className="searchWrapper">
+            Search: <input type="text" className="btn search" onKeyUp={(event) => {
+              searchPracticePlans(event.target.value)}}
+                placeholder="Search Exercises... " />
+            </div> 
             <fieldset>
                 <label htmlFor="practicePlan">Practice Plan</label>
                 <div>

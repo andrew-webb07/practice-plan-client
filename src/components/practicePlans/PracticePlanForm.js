@@ -6,7 +6,7 @@ import { ExerciseContext } from "../exercise/ExerciseProvider"
 
 export const PracticePlanForm = () => {
     const {createPracticePlan, editPracticePlan, getPracticePlan} = useContext(PracticePlanContext)
-    const {getExercises, exercises} = useContext(ExerciseContext)
+    const {getExercises, exercises, searchExercises} = useContext(ExerciseContext)
     const [ practicePlan, setPracticePlan ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
@@ -58,6 +58,7 @@ export const PracticePlanForm = () => {
     
     useEffect(() => {
         getExercises()
+        searchExercises()
     }, [])
 
     useEffect(() => {
@@ -94,6 +95,11 @@ export const PracticePlanForm = () => {
                     onChange={handleControlledInputChange}></textarea>
                 </div>
             </fieldset>
+            <div className="searchWrapper">
+            Search: <input type="text" className="btn search" onKeyUp={(event) => {
+              searchExercises(event.target.value)}}
+                placeholder="Search Exercises... " />
+            </div> 
             <fieldset className="practicePlanExercises practicePlanFormSet">
                 {exercises.map((exercise) => (
 					<>
