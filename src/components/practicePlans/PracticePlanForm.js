@@ -52,7 +52,7 @@ export const PracticePlanForm = () => {
         }
         } else {
         window.alert("Please fill out all fields")
-        // setIsLoading(false)
+        setIsLoading(false)
     }
     }
     
