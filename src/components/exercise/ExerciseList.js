@@ -3,18 +3,27 @@ import { ExerciseContext } from "./ExerciseProvider"
 import { useHistory, Link } from "react-router-dom"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { PracticePlanContext } from "../practicePlans/PracticePlanProvider";
+import { CategoryContext } from "../category/CategoryProvider"
 
 export const ExerciseList = () => {
     const { getExercises, exercises, getExercisePlans, deleteExercise, searchExercises } = useContext(ExerciseContext)
     const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
     const history = useHistory()
-    // const [exercisePlans, setExercisePlans] = useState([])
+    const { getCategories, categories } = useContext(CategoryContext)
+    const [ category, setCategory ] = useState("")
 
     useEffect(() => {
         getExercises()
         getPracticePlans()
         searchExercises()
+        getCategories()
     }, [])
+
+    // useEffect(() => {
+    //     if (category === "") {
+    //         getExercises()
+    //     }
+    // }, [category])
 
     return (
         <>
@@ -23,7 +32,17 @@ export const ExerciseList = () => {
             Search: <input type="text" className="btn search" onKeyUp={(event) => {
               searchExercises(event.target.value)}}
                 placeholder="Search Exercises... " />
-            </div> 
+        </div>
+        <fieldset>
+            <label htmlFor="category">Category: </label>
+                <select value={category} name="categoryId" id="categoryId" onChange={(event) => {
+                    searchExercises(event.target.value)
+                    setCategory(event.target.value)
+                }}>
+                    <option value="">Select Category{" "}</option>
+                    {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
+				</select>
+        </fieldset>
         <div>
         {exercises?.map(exercise => {
             const ExerciseDetail = (props) => {
