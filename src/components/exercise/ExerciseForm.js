@@ -11,7 +11,7 @@ export const ExerciseForm = () => {
     const [ exercise, setExercise ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
-    const [currentPicture, setCurrentPicture] = useState({});
+    const [currentPicture, setCurrentPicture] = useState("");
     const {exerciseId} = useParams()
 
     const getBase64 = (file, callback) => {
@@ -40,7 +40,7 @@ export const ExerciseForm = () => {
         if (exercise.title === undefined ||
             exercise.description === undefined ||
             exercise.categoryId === undefined) {
-                window.alert("Please fill out all fields")
+            window.alert("Please fill out all fields")
             } else {
         setIsLoading(true)
         if (exerciseId) {
