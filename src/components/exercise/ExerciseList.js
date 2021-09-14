@@ -5,21 +5,27 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { PracticePlanContext } from "../practicePlans/PracticePlanProvider";
 
 export const ExerciseList = () => {
-    const { getExercises, exercises, getExercisePlans, deleteExercise } = useContext(ExerciseContext)
+    const { getExercises, exercises, getExercisePlans, deleteExercise, searchExercises } = useContext(ExerciseContext)
     const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     // const [exercisePlans, setExercisePlans] = useState([])
 
     useEffect(() => {
         getExercises()
-        getPracticePlans()    
+        getPracticePlans()
+        searchExercises()
     }, [])
 
     return (
         <>
         <h1>Exercises</h1>
+        <div className="searchWrapper">
+            Search: <input type="text" className="btn search" onKeyUp={(event) => {
+              searchExercises(event.target.value)}}
+                placeholder="Search Exercises... " />
+            </div> 
         <div>
-        {exercises.map(exercise => {
+        {exercises?.map(exercise => {
             const ExerciseDetail = (props) => {
                 const {
                 buttonLabel,

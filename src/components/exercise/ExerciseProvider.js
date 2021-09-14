@@ -15,6 +15,16 @@ export const ExerciseProvider = (props) => {
             .then(setExercises)
     }
 
+    const searchExercises = (searchTerms) => {
+        return fetch(`http://localhost:8000/exercises?q=${searchTerms}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
+            }
+        })
+        .then(res => res.json())
+        .then(setExercises)
+    }
+
     const getExercise = (exerciseId) => {
         return fetch(`http://localhost:8000/exercises/${exerciseId}`, {
             headers:{
@@ -56,7 +66,7 @@ export const ExerciseProvider = (props) => {
     }
 
     return (
-        <ExerciseContext.Provider value={{ exercises, getExercises, createExercise, editExercise, getExercise, deleteExercise}} >
+        <ExerciseContext.Provider value={{ exercises, getExercises, createExercise, editExercise, getExercise, deleteExercise, searchExercises}} >
             { props.children }
         </ExerciseContext.Provider>
     )
