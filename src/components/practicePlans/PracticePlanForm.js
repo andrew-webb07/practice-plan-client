@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { PracticePlanContext } from "./PracticePlanProvider"
 import { useHistory, useParams } from "react-router-dom"
 import { ExerciseContext } from "../exercise/ExerciseProvider"
+import { CategoryContext } from "../category/CategoryProvider"
 
 
 export const PracticePlanForm = () => {
@@ -12,6 +13,8 @@ export const PracticePlanForm = () => {
 	const history = useHistory();
     const [ practicePlanExercises, setPracticePlanExercises] = useState([]);
     const {practicePlanId} = useParams()
+    const { getCategories, categories } = useContext(CategoryContext)
+    const [ category, setCategory ] = useState("")
 
     const handleControlledInputChange = (event) => {
         const newPracticePlan = { ...practicePlan }
@@ -59,6 +62,7 @@ export const PracticePlanForm = () => {
     useEffect(() => {
         getExercises()
         searchExercises()
+        getCategories()
     }, [])
 
     useEffect(() => {
@@ -94,6 +98,16 @@ export const PracticePlanForm = () => {
                     <textarea type="textarea" id="description" name="description" required autoFocus placeholder="Type Description Here" value={practicePlan.description}
                     onChange={handleControlledInputChange}></textarea>
                 </div>
+            </fieldset>
+            <fieldset>
+            <label htmlFor="category">Category: </label>
+                <select value={category} name="categoryId" id="categoryId" onChange={(event) => {
+                    searchExercises(event.target.value)
+                    setCategory(event.target.value)
+                }}>
+                    <option value="">Select Category{" "}</option>
+                    {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
+				</select>
             </fieldset>
             <div className="searchWrapper">
             Search: <input type="text" className="btn search" onKeyUp={(event) => {
