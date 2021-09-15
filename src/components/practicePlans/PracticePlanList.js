@@ -4,16 +4,30 @@ import { PracticePlanContext } from "./PracticePlanProvider";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export const PracticePlanList = () => {
-    const { getPracticePlans, practicePlans, deletePracticePlan } = useContext(PracticePlanContext)
+    const { getPracticePlans, practicePlans, deletePracticePlan, userPracticePlans } = useContext(PracticePlanContext)
     const history = useHistory()
+    const [ userDataOnly, setUserDataOnly ] = useState("")
+
+    const handleUserDataOnly = () => {
+        if (userDataOnly === "") {
+            setUserDataOnly(true)
+        } else {
+            setUserDataOnly("")
+        }
+    }
 
     useEffect(() => {
-        getPracticePlans()       
-    }, [])
+        userPracticePlans(userDataOnly)
+    }, [userDataOnly])
 
     return (
         <>
             <h1>Practice Plans</h1>
+            <div className="form-group">
+            <label htmlFor="isUser">Current Player Data Only</label>
+            <input type="checkbox"
+            onChange={handleUserDataOnly} />
+          </div>
             {practicePlans.map(practicePlan => {
                 const PracticePlanDetail = (props) => {
                     const {
