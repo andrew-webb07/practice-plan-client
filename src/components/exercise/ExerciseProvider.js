@@ -12,11 +12,11 @@ export const ExerciseProvider = (props) => {
             }
         })
             .then(response => response.json())
-            .then(setExercises)
+            // .then(searchExercises)
     }
 
-    const searchExercises = (searchTerms) => {
-        return fetch(`http://localhost:8000/exercises?q=${searchTerms}`, {
+    const searchExercises = (searchTerms, categoryTerms, isUser) => {
+        return fetch(`http://localhost:8000/exercises?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }

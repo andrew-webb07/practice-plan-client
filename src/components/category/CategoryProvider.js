@@ -15,6 +15,16 @@ export const CategoryProvider = (props) => {
             .then(setCategories)
     }
 
+    const userCategories = (isUser) => {
+        return fetch(`http://localhost:8000/categories?isUser=${isUser}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
+            }
+        })
+        .then(res => res.json())
+        .then(setCategories)
+    }
+
     const getCategory = (categoryId) => {
         return fetch(`http://localhost:8000/categories/${categoryId}`, {
             headers:{
@@ -56,7 +66,7 @@ export const CategoryProvider = (props) => {
     }
 
     return (
-        <CategoryContext.Provider value={{ categories, getCategories, createCategory, editCategory, getCategory, deleteCategory}} >
+        <CategoryContext.Provider value={{ categories, getCategories, createCategory, editCategory, getCategory, deleteCategory, userCategories}} >
             { props.children }
         </CategoryContext.Provider>
     )

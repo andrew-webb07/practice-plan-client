@@ -1,43 +1,59 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ExerciseContext } from "./ExerciseProvider"
 import { useHistory, Link } from "react-router-dom"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { PracticePlanContext } from "../practicePlans/PracticePlanProvider";
 import { CategoryContext } from "../category/CategoryProvider"
 
 export const ExerciseList = () => {
-    const { getExercises, exercises, getExercisePlans, deleteExercise, searchExercises } = useContext(ExerciseContext)
+    const { getExercises, exercises, deleteExercise, searchExercises } = useContext(ExerciseContext)
     const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     const { getCategories, categories } = useContext(CategoryContext)
-    const [ category, setCategory ] = useState("")
+    const [ userDataOnly, setUserDataOnly ] = useState("")
+    const [ searchTerms, setSearchTerms ] = useState("")
+    const [ categoryTerms, setCategoryTerms ] = useState("")
+    // const [ category, setCategory ] = useState("")
+    // const [ allExercises, setAllExercises ] = useState([])
+
+    const handleUserDataOnly = () => {
+        if (userDataOnly === "") {
+            setUserDataOnly(true)
+        } else {
+            setUserDataOnly("")
+        }
+    }
+
+
 
     useEffect(() => {
-        getExercises()
+        // getExercises()
+        // .then(setAllExercises)
         getPracticePlans()
-        searchExercises()
         getCategories()
     }, [])
 
-    // useEffect(() => {
-    //     if (category === "") {
-    //         getExercises()
-    //     }
-    // }, [category])
+    useEffect(() => {
+        searchExercises(searchTerms, categoryTerms, userDataOnly)
+    }, [ searchTerms, categoryTerms, userDataOnly])
 
     return (
         <>
         <h1>Exercises</h1>
+        <div className="form-group">
+            <label htmlFor="isUser">Current Player Data Only</label>
+            <input type="checkbox" checked={userDataOnly} onChange={handleUserDataOnly} />
+          </div>
         <div className="searchWrapper">
             Search: <input type="text" className="btn search" onKeyUp={(event) => {
-              searchExercises(event.target.value)}}
+              setSearchTerms(event.target.value)}}
                 placeholder="Search Exercises... " />
         </div>
         <fieldset>
             <label htmlFor="category">Category: </label>
-                <select value={category} name="categoryId" id="categoryId" onChange={(event) => {
-                    searchExercises(event.target.value)
-                    setCategory(event.target.value)
+                <select value={categoryTerms} name="categoryId" id="categoryId" onChange={(event) => {
+                    setCategoryTerms(event.target.value)
+                    // setCategory(event.target.value)
                 }}>
                     <option value="">Select Category{" "}</option>
                     {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
@@ -46,12 +62,7 @@ export const ExerciseList = () => {
         <div>
         {exercises?.map(exercise => {
             const ExerciseDetail = (props) => {
-                const {
-                buttonLabel,
-                className
-                } = props;
-
-                // getExercisePlans(exercise).then((res) => {setExercisePlans(res)})
+                const {buttonLabel, className} = props;
             
                 const [modal, setModal] = useState(false);
             
@@ -68,7 +79,7 @@ export const ExerciseList = () => {
                 }
   
                 return (
-                <div>
+                <div key={exercise.id}>
                     <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{exercise.title}</strong></u></div>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
@@ -84,7 +95,7 @@ export const ExerciseList = () => {
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
                             <>
-                            <div>
+                            <div key={exercisePlan.id}>
                             <strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong>
                             </div>
                             </>
@@ -97,7 +108,7 @@ export const ExerciseList = () => {
             }
             return (
             <>
-                <div className="exercise"><ExerciseDetail /></div>
+                <div className="exercise" key={exercise.id}><ExerciseDetail /></div>
                 {exercise.is_creator ? (
                     <>
                 <button onClick={() => {history.push(`/exercises/edit/${exercise.id}`)}}>Edit</button>
