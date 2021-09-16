@@ -1,0 +1,70 @@
+fieldset {
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    text-align: center;
+}
+
+
+.dialog {
+
+}
+
+.button--close {
+
+}
+
+.form--login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-position-x: right;
+    z-index: 1;
+    min-height: 25rem;
+    min-width: 45rem;
+    background-color: rgb(144 92 92);
+    box-shadow: inset #9a9a9a 0.7em 0.7em 0.7em;
+    /* box-shadow: #191919 0.7em 0.7em 1em 3px; */
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 4em 32em 32em 32em;
+    padding-bottom: 2em;
+    border-radius: 1em;
+}
+
+.form--register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-position-x: right;
+    z-index: 1;
+    min-height: 25rem;
+    min-width: 45rem;
+    background-color: rgb(144 92 92);
+    box-shadow: #191919 0.7em 0.7em 1em 3px;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 4em 28em 28em 28em;
+    padding-bottom: 2em;
+    border-radius: 1em;
+}
+
+.form-control {
+    width: 70%;
+    padding: .3em;
+    border-radius: 1em;
+    box-shadow: #9a9a9a 0em 0em 0.7em;
+}
+
+.link--register {
+    text-align: center;
+    color: white;
+}
+
+.loginHeader {
+    font-size: 3em;
+}
