@@ -1,4 +1,4 @@
-.form--session {
+.form--practicePlan {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,27 +17,26 @@
     border-radius: 1em;
 }
 
-.practicePlan-detail-container {
-    display: flex;
+.category-dropdown-container {
+    display: flex; 
     flex-direction: column;
     justify-content: center;
-    border: 1px solid white;
-    margin: 0em 10em;
-    border-radius: 1em;
-    padding-bottom: 1em;
+    color:white;
+    align-items: center;
 }
 
-.practicePlan-detail {
-    text-align: center;
-}
-
-/* .practicePlan-detail-container {
-    flex-basis: 28%;
-    margin: 1em;
-    padding: 1em;
-    background-color: rgb(78, 78, 78, .9);
-    box-shadow: black 0.2em 0.2em 0.2em;
+.search-options-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-} */
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+}
+
+.practicePlanExercises {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.exerciseDiv {
+    display: flex;
+}

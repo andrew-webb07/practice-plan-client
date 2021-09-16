@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CategoryContext } from "./CategoryProvider"
 import { useHistory, useParams } from "react-router-dom"
-
+import "./Category.css"
 
 export const CategoryForm = () => {
     const {createCategory, editCategory, getCategory} = useContext(CategoryContext)
@@ -18,6 +18,9 @@ export const CategoryForm = () => {
     }
 
     const handleSaveCategory = () => {
+        if (category.label === undefined || category.label === "") {
+            window.alert("Please enter a category")
+        } else {
         setIsLoading(true)
         if (categoryId) {
             editCategory({
@@ -31,6 +34,7 @@ export const CategoryForm = () => {
             })
             .then(() => clearForm() , history.push("/categories"))
         }
+    }
     }
     
     const clearForm = () => { 
@@ -56,24 +60,20 @@ export const CategoryForm = () => {
     }, [categoryId])
 
     return (
-        <form id="categoryForm">
+        <form className="form--category" id="categoryForm">
             <div>
                 <h1>{categoryId ? "Edit Category": "Create a Category"}</h1>
             <fieldset>
-                <div>
-                    <input type="text" id="label" name="label" value={category.label} required autoFocus placeholder="Type Category Here"
+                    <input className="form-control" type="text" id="label" name="label" value={category.label} required autoFocus placeholder="Type Category Here"
                     onChange={handleControlledInputChange}/>
-                </div>
             </fieldset>
-            <div>
-                <button 
-                disabled={isLoading}
-                onClick={event => {
+            <fieldset style={{textAlign:"center"}}>
+                <button disabled={isLoading} className="btn btn-1 btn-sep icon-send" onClick={event => {
                     event.preventDefault()
                     handleSaveCategory()
                     setCategory("")
                 }}>{categoryId ? "Update Category": "Create Category"}</button>
-            </div>
+            </fieldset>
             </div>
         </form>
     )

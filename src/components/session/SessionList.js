@@ -120,6 +120,9 @@ export const SessionList = () => {
             <button onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
             </>
         )})}
+        <div>
+        <button className="practicePlan-button" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
+        </div>
         </div>
         </>
     )

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CategoryContext } from "./CategoryProvider"
 import { useHistory, Link } from "react-router-dom"
+import "./Category.css"
 
 export const CategoryList = () => {
     const { getCategories, categories, deleteCategory, userCategories } = useContext(CategoryContext)

@@ -3,6 +3,7 @@ import { PracticePlanContext } from "./PracticePlanProvider"
 import { useHistory, useParams } from "react-router-dom"
 import { ExerciseContext } from "../exercise/ExerciseProvider"
 import { CategoryContext } from "../category/CategoryProvider"
+import "./PracticePlan.css"
 
 
 export const PracticePlanForm = () => {
@@ -15,6 +16,9 @@ export const PracticePlanForm = () => {
     const {practicePlanId} = useParams()
     const { getCategories, categories } = useContext(CategoryContext)
     const [ category, setCategory ] = useState("")
+    const [ userDataOnly, setUserDataOnly ] = useState("")
+    const [ searchTerms, setSearchTerms ] = useState("")
+    const [ categoryTerms, setCategoryTerms ] = useState("")
 
     const handleControlledInputChange = (event) => {
         const newPracticePlan = { ...practicePlan }
@@ -58,10 +62,12 @@ export const PracticePlanForm = () => {
         setIsLoading(false)
     }
     }
+
+    useEffect(() => {
+        searchExercises(searchTerms, categoryTerms, userDataOnly)
+    }, [ searchTerms, categoryTerms, userDataOnly])
     
     useEffect(() => {
-        getExercises()
-        searchExercises()
         getCategories()
     }, [])
 
@@ -82,38 +88,44 @@ export const PracticePlanForm = () => {
     }, [practicePlanId])
 
     return (
-        <form id="practicePlanForm">
+        <form className="form--practicePlan" id="practicePlanForm">
             <div>
                 <h1>{practicePlanId ? "Edit Practice Plan" : "Create a Practice Plan"}</h1>
             <fieldset>
                 <label htmlFor="title">Title: </label>
                 <div>
-                    <input type="text" id="title" name="title" required autoFocus placeholder="Type Title Here" value={practicePlan.title}
+                    <input className="form-control" type="text" id="title" name="title" required autoFocus placeholder="Type Title Here" value={practicePlan.title}
                     onChange={handleControlledInputChange}/>
                 </div>
             </fieldset>
             <fieldset>
                 <label htmlFor="description">Description: </label>
                 <div>
-                    <textarea type="textarea" id="description" name="description" required autoFocus placeholder="Type Description Here" value={practicePlan.description}
+                    <textarea className="form-control" type="textarea" id="description" name="description" required autoFocus placeholder="Type Description Here" value={practicePlan.description}
                     onChange={handleControlledInputChange}></textarea>
                 </div>
             </fieldset>
-            <fieldset>
-            <label htmlFor="category">Category: </label>
-                <select value={category} name="categoryId" id="categoryId" onChange={(event) => {
-                    searchExercises(event.target.value)
-                    setCategory(event.target.value)
-                }}>
-                    <option value="">Select Category{" "}</option>
-                    {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
-				</select>
-            </fieldset>
-            <div className="searchWrapper">
-            Search: <input type="text" className="btn search" onKeyUp={(event) => {
-              searchExercises(event.target.value)}}
-                placeholder="Search Exercises... " />
-            </div> 
+            <div className="search-options-container">
+                <fieldset>
+                <div className="category-dropdown-container">
+                <label htmlFor="category">Search Exercise By Category: </label>
+                    <select className="form-control-category" value={practicePlan.categoryId} name="categoryId" id="categoryId" onChange={handleControlledInputChange} onChange={(event) => {
+                        setCategoryTerms(event.target.value)
+                    }}>
+                        <option value="">Select Category{" "}</option>
+                        {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
+                    </select>
+                </div>
+                </fieldset>
+                <div className="category-dropdown-container">
+                Search Exercise by Text: <input type="text" className="btn search" onKeyUp={(event) => {
+                setSearchTerms(event.target.value)}}
+                    placeholder="Search Exercises... " />
+                </div> 
+            </div>
+            <div>
+                <h4>Choose Exercise(s):</h4>
+            </div>
             <fieldset className="practicePlanExercises practicePlanFormSet">
                 {exercises.map((exercise) => (
 					<>
@@ -137,15 +149,13 @@ export const PracticePlanForm = () => {
 							</>
 						))}
 					</fieldset>
-            <div>
-                <button 
-                disabled={isLoading}
-                onClick={event => {
+            <fieldset style={{textAlign:"center"}}>
+                <button className="btn btn-1 btn-sep icon-send" disabled={isLoading} onClick={event => {
                     event.preventDefault()
                     handleSavePracticePlan()
                     setPracticePlan("")
                 }}>{practicePlanId ? "Update Practice Plan" : "Create Practice Plan"}</button>
-            </div>
+            </fieldset>
             </div>
         </form>
     )

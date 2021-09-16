@@ -1,0 +1,50 @@
+.form--exercise {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-position-x: right;
+    z-index: 1;
+    min-height: 25rem;
+    min-width: 45rem;
+    background-color: rgb(144 92 92);
+    box-shadow: #191919 0.7em 0.7em 1em 3px;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 4em 28em 28em 28em;
+    padding-bottom: 2em;
+    border-radius: 1em;
+}
+
+.form-control-picture {
+    width: 70%;
+    padding: .3em;
+    border-radius: 1em;
+    box-shadow: #9a9a9a 0em 0em 0.7em;
+    background-color: white;
+}
+
+.form-control-category {
+    /* width: 30%; */
+    padding: .3em 3em;
+    margin: .5em .5em 0 .5em;
+    border-radius: 2em;
+    box-shadow: #9a9a9a 0em 0em 0.7em;
+}
+
+.picture-form-container {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    color:white;
+    align-items: center;
+}
+
+.category-dropdown-container {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    color:white;
+    align-items: center;
+}
