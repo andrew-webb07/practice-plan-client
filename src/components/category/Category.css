@@ -1,0 +1,18 @@
+.form--category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-position-x: right;
+    z-index: 1;
+    min-height: 5rem;
+    min-width: 25rem;
+    background-color: rgb(144 92 92);
+    box-shadow: #191919 0.7em 0.7em 1em 3px;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 4em 28em 28em 28em;
+    padding-bottom: 2em;
+    border-radius: 1em;
+}

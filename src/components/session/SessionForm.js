@@ -3,6 +3,7 @@ import { SessionContext } from "./SessionProvider"
 import { useHistory, useParams } from "react-router-dom"
 import { ExerciseContext } from "../exercise/ExerciseProvider"
 import { PracticePlanContext } from "../practicePlans/PracticePlanProvider"
+import "./Session.css"
 
 
 export const SessionForm = () => {
@@ -79,17 +80,19 @@ export const SessionForm = () => {
     }, [sessionId])
 
     return (
-        <form id="sessionForm">
+        <form className="form--session" id="sessionForm">
             <div>
                 <h1>{sessionId ? "Edit Session" : "Schedule a Session"}</h1>
-                <div className="searchWrapper">
-            Search: <input type="text" className="btn search" onKeyUp={(event) => {
+            <div className="category-dropdown-container">
+            Search Practice Plans: <input type="text" className="btn search" onKeyUp={(event) => {
               searchPracticePlans(event.target.value)}}
-                placeholder="Search Exercises... " />
+                placeholder="Search Practice Plans... " />
             </div> 
+            <div>
+                <h4>Choose Practice Plan:</h4>
+            </div>
             <fieldset>
-                <label htmlFor="practicePlan">Practice Plan</label>
-                <div>
+                <div className="practicePlanExercises">
                     {practicePlans?.map(practicePlan => (
                         <>
                         <div>
@@ -101,51 +104,53 @@ export const SessionForm = () => {
                 </div>
             </fieldset>
             <fieldset>
-                <label htmlFor="practicePlanDetails">Practice Plan Details: </label>
-                <div>Title: {sessionPracticePlan.title}</div>
-                <div>Description: {sessionPracticePlan.description}</div>
+                <div className="practicePlan-detail-container">
+                <h2>Practice Plan Details</h2>
+                    <div><strong>Title</strong>   -   {sessionPracticePlan.title}</div>
+                    <div><strong>Description</strong>   -   {sessionPracticePlan.description}</div>
+                <h3>Practice Plan Exercises</h3>
                 {sessionPracticePlan.exercises.map(exercise => (
                     <>
                         <div>
-                            <div>Exercise Title: {exercise.title}</div>
-                            <div>Exercise Description: {exercise.description}</div>
-                            <div>Category: {exercise.category.label}</div>
+                            <div className="practicePlan-detail"><strong>Exercise Title</strong>   -   {exercise.title}</div>
+                            <div className="practicePlan-detail"><strong>Exercise Description</strong>   -   {exercise.description}</div>
+                            <div className="practicePlan-detail"><strong>Category</strong>   -   {exercise.category.label}</div>
                         </div>
                     </>
                     ))}
+                </div>
             </fieldset>
             <fieldset>
                 <label htmlFor="title">Length of Session in minutes: </label>
                 <div>
-                    <input type="text" id="lengthOfSession" name="lengthOfSession" required autoFocus placeholder="Type number (e.g. '10')" value={session.lengthOfSession}
+                    <input className="form-control"  type="text" id="lengthOfSession" name="lengthOfSession" required autoFocus placeholder="Type number (e.g. '10')" value={session.lengthOfSession}
                     onChange={handleControlledInputChange}/>
                 </div>
             </fieldset>
             <fieldset>
-            <div className="form-group">
+            <div className="category-dropdown-container">
                 <label htmlFor="date">Schedule: </label>
-                <input type="date" id="date" name="date" required autoFocus className="form-control"
+                <input className="form-control"  type="date" id="date" name="date" required autoFocus className="form-control"
                 placeholder="Date"
                 onChange={handleControlledInputChange}
                 value={session.date}/>
+                
             </div>
           </fieldset>
           <fieldset>
                 <label htmlFor="notes">Session Notes: </label>
                 <div>
-                    <textarea type="textarea" id="notes" name="notes" required autoFocus placeholder="Type Description Here" value={session.notes}
+                    <textarea className="form-control"  type="textarea" id="notes" name="notes" required autoFocus placeholder="Type Description Here" value={session.notes}
                     onChange={handleControlledInputChange}></textarea>
                 </div>
             </fieldset>
-            <div>
-                <button 
-                disabled={isLoading}
-                onClick={event => {
+            <fieldset style={{textAlign:"center"}}>
+                <button className="btn btn-1 btn-sep icon-send" disabled={isLoading} onClick={event => {
                     event.preventDefault()
                     handleSaveSession()
                     setSession("")
-                }}>{sessionId ? "Update Practice Plan" : "Create Practice Plan"}</button>
-            </div>
+                }}>{sessionId ? "Update Session" : "Create Session"}</button>
+            </fieldset>
             </div>
         </form>
     )

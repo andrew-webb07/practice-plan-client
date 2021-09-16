@@ -24,8 +24,7 @@ fieldset {
     min-height: 25rem;
     min-width: 45rem;
     background-color: rgb(144 92 92);
-    box-shadow: inset #9a9a9a 0.7em 0.7em 0.7em;
-    /* box-shadow: #191919 0.7em 0.7em 1em 3px; */
+    box-shadow: #191919 0.7em 0.7em 1em 3px;
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     color: white;
