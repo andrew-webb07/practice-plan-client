@@ -40,8 +40,10 @@ export const Login = () => {
                 <div>Username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <section>
+
                 <form className="form--login" onSubmit={handleLogin}>
+                <h1 className="loginHeader">Practice Plan</h1>
+                <h3>Please Sign In</h3>
                     <fieldset>
                         <input ref={username} type="text" id="username" className="form-control" placeholder="Username" required autoFocus />
                     </fieldset>
@@ -53,11 +55,11 @@ export const Login = () => {
                     }}>
                         <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
                     </fieldset>
+                    <section className="link--register">
+                <Link className="link--register" to="/register">Don't have an account yet? Click here to sign up!</Link>
+            </section>
                 </form>
-            </section>
-            <section className="link--register">
-                <Link to="/register">Don't have an account yet? Click here to sign up!</Link>
-            </section>
+
         </main>
     )
 }

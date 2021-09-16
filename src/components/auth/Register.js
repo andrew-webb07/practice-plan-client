@@ -52,24 +52,21 @@ export const Register = () => {
 
 	return (
 		<main style={{ textAlign: "center" }}>
-			<dialog ref={passwordDialog}>
+			<dialog className="dialog dialog--auth" ref={passwordDialog}>
 				<div>Passwords do not match</div>
-				<button
-					onClick={(e) => passwordDialog.current.close()}
-				>
-					Close
-				</button>
+				<button className="button--close" onClick={(e) => passwordDialog.current.close()}>Close</button>
 			</dialog>
 
-			<h1>Register</h1>
+			
 			<form onSubmit={handleRegister}>
-				<div className="registerColumn1 form--login">
+				<div className="form--register">
+				<h1>Register Practice Plan Player</h1>
 					<fieldset>
 						<input
 							ref={firstName}
 							type="text"
 							name="firstName"
-							className="form-control-firstName"
+							className="form-control"
 							placeholder="First name"
 							required
 							autoFocus
@@ -80,7 +77,7 @@ export const Register = () => {
 							ref={lastName}
 							type="text"
 							name="lastName"
-							className="form-control-lastName"
+							className="form-control"
 							placeholder="Last name"
 							required
 						/>
@@ -95,14 +92,12 @@ export const Register = () => {
 							required
 						/>
 					</fieldset>
-				</div>
-				<div className="registerColumn2 form--login">
 					<fieldset>
 						<input
 							ref={username}
 							type="username"
 							name="username"
-							className="form-control-username"
+							className="form-control"
 							placeholder="Username"
 							required
 						/>
@@ -138,6 +133,16 @@ export const Register = () => {
 						/>
 					</fieldset>
 					<fieldset>
+						<input
+							ref={isPublic}
+							type="text"
+							name="isPublic"
+							className="form-control"
+							placeholder="Profile Public? Enter Yes or No"
+							required
+						/>
+					</fieldset>
+					<fieldset>
 						<textarea
 							ref={bio}
 							rows="5"
@@ -148,24 +153,16 @@ export const Register = () => {
 							required
 						/>
 					</fieldset>
-                    <fieldset>
-						<textarea
-							ref={isPublic}
-							type="text"
-							name="isPublic"
-							className="form-control"
-							placeholder="Profile Public? Enter Yes or No"
-							required
-						/>
-					</fieldset>
+					<fieldset style={{
+                        textAlign:"center"
+                    }}>
+                        <button className="btn btn-1 btn-sep icon-send" type="submit">Register Player</button>
+                    </fieldset>
+				<section className="link--register">
+				Already registered? <Link className="link--register" to="/login">Login</Link>
+				</section>
 				</div>
-				<button className="btn btn-1 btn-sep icon-send" type="submit">
-					Register
-				</button>
 			</form>
-			<section className="link--register">
-				Already registered? <Link to="/login">Login</Link>
-			</section>
 		</main>
 	);
 };

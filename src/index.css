@@ -5,6 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://p0.piqsels.com/preview/190/47/798/lyrics-sheet-music-note-music.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.btn {
+  text-align: center;
+  margin: .5em .5em 0 .5em;
+  padding: .5em 1.5em;
+  box-shadow: black 0 0 .2em;
+  flex-basis: 25%;
+  border-radius: 2em;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
 }
 
 code {
