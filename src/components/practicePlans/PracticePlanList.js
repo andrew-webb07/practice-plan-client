@@ -23,11 +23,12 @@ export const PracticePlanList = () => {
     return (
         <>
             <h1>Practice Plans</h1>
-            <div className="form-group">
+            <h3 style={{textAlign:"center"}}>
             <label htmlFor="isUser">Current Player Data Only</label>
             <input type="checkbox"
             onChange={handleUserDataOnly} />
-          </div>
+            </h3>
+          <div className="practicePlans">
             {practicePlans.map(practicePlan => {
                 const PracticePlanDetail = (props) => {
                     const {
@@ -64,18 +65,25 @@ export const PracticePlanList = () => {
                 }
                 return (
                     <>
+                    <div className="practicePlan">
                     <PracticePlanDetail />
                     {practicePlan.is_creator ? (
                     <>
-                <button onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
-                <button onClick={() => {history.push("/"); deletePracticePlan(practicePlan.id)}}>Delete</button> </>) : (<> </>)
+                    <div className="practicePlan-buttons">
+                    <button className="btn" onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
+                    <button className="btn" onClick={() => {history.push("/"); deletePracticePlan(practicePlan.id)}}>Delete</button>
+                    </div> </>) : (<> </>)
+                
                 }
-                    </>
+                </div>
+                </> 
                 )
             })}
-            <div>
-            <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create New Practice Plan?</button>
             </div>
+            <fieldset style={{textAlign:"center"}}>
+            <button className="btn" onClick={() => history.push("/practiceplans/create")}>Create New Practice Plan?</button>
+            </fieldset>
+            
         </>
     )
 }
