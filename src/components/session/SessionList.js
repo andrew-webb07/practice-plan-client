@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { SessionContext } from "./SessionProvider.js"
 import { useHistory, Link } from "react-router-dom"
+import Practice_Plan_NO_BORDER_02 from "../images/Practice_Plan_NO_BORDER_02.png"
 import "./Session.css"
 
 export const SessionList = () => {
@@ -21,14 +22,16 @@ export const SessionList = () => {
 
     return (
         <>
-        <h1 className="header">Practice Plan</h1>
+        <div className="logoContainer">
+            <img src={Practice_Plan_NO_BORDER_02} alt="logo" className="logo" />
+        </div>
         <div className="practicePlan-buttons">
             <button className="practicePlan-button" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
             <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create Practice Plan?</button>
             <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create Practice Exercise?</button>
         </div>
+            <h1 className="sessionsHeader">Scheduled Sessions</h1>
         <div className="sessions">
-            <h2>Scheduled Sessions</h2>
         {scheduledSessions.map(session => {
             const PracticePlanDetail = (props) => {
                 const {
@@ -65,17 +68,21 @@ export const SessionList = () => {
             }
             return (
             <>
+            <div className="session">
             <PracticePlanDetail />
             <div>{session.date} {session.length_of_session} minutes</div>
             <div>Length of Each Exercise: {session.length_of_each_exercise} minutes</div>
             <div>Notes: {session.notes}</div>
-            <button onClick={() => {history.push(`/sessions/edit/${session.id}`)}}>Edit</button>
-            <button onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
+            <div className="session-buttons">
+            <button className="btn" onClick={() => {history.push(`/sessions/edit/${session.id}`)}}>Edit</button>
+            <button className="btn" onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
+            </div>
+            </div>
             </>
         )})}
         </div>
-        <div className="sessions">
-            <h2>Completed Sessions</h2>
+            <h1>Completed Sessions</h1>
+            <div className="sessions">
             {completedSessions.map(session => {
                 const PracticePlanDetail = (props) => {
                     const {
@@ -112,18 +119,22 @@ export const SessionList = () => {
                 }
             return (
             <>
+            <div className="session">
             <PracticePlanDetail />
             <div>{session.date} {session.length_of_session} minutes</div>
             <div>Length of Each Exercise: {session.length_of_each_exercise} minutes</div>
-            <div>{session.notes}</div>
-            <button onClick={() => {history.push(`/sessions/edit/${session.id}`)}}>Edit</button>
-            <button onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
+            <div>Notes: {session.notes}</div>
+            <div className="session-buttons">
+            <button className="btn" onClick={() => {history.push(`/sessions/edit/${session.id}`)}}>Edit</button>
+            <button className="btn" onClick={() => {history.push("/"); deleteSession(session.id)}}>Delete</button>
+            </div>
+            </div>
             </>
         )})}
-        <div>
-        <button className="practicePlan-button" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
         </div>
-        </div>
+        <fieldset style={{textAlign:"center"}}>
+        <button className="btn-to-form" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
+        </fieldset>
         </>
     )
 }
