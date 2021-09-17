@@ -58,7 +58,7 @@ export const Register = () => {
 				<button className="button--close" onClick={(e) => passwordDialog.current.close()}>Close</button>
 			</dialog>
 
-			
+			<div className="container--login">
 			<form onSubmit={handleRegister}>
 				<div className="form--register">
 				<div className="logoContainer">
@@ -166,6 +166,7 @@ export const Register = () => {
 				</section>
 				</div>
 			</form>
+			</div>
 		</main>
 	);
 };

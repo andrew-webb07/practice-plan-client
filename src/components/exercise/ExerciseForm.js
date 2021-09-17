@@ -83,6 +83,8 @@ export const ExerciseForm = () => {
     }, [exerciseId])
 
     return (
+        <>
+        <div className="category-container">
         <form className="form--exercise" id="exerciseForm">
             <div>
                 <h1>{exerciseId ? "Edit an Exercise" : "Create an Exercise"}</h1>
@@ -124,5 +126,7 @@ export const ExerciseForm = () => {
             </fieldset>
             </div>
         </form>
+        </div>
+        </>
     )
 }

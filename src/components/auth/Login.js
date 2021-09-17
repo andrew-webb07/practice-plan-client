@@ -41,7 +41,7 @@ export const Login = () => {
                 <div>Username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-
+                <div className="container--login">
                 <form className="form--login" onSubmit={handleLogin}>
                 <div className="logoContainer">
                     <img src={Practice_Plan_NO_BORDER_02} alt="logo" className="logo" />
@@ -62,7 +62,7 @@ export const Login = () => {
                 <Link className="link--register" to="/register">Don't have an account yet? Click here to sign up!</Link>
             </section>
                 </form>
-
+                </div>
         </main>
     )
 }

@@ -13,8 +13,13 @@ export const ExerciseList = () => {
     const [ userDataOnly, setUserDataOnly ] = useState("")
     const [ searchTerms, setSearchTerms ] = useState("")
     const [ categoryTerms, setCategoryTerms ] = useState("")
-    // const [ category, setCategory ] = useState("")
-    // const [ allExercises, setAllExercises ] = useState([])
+
+    const alphabeticalExercises = exercises.sort((a, b) => {
+        const textA = a.title.toUpperCase();
+        const textB = b.title.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+    })
+    console.log(alphabeticalExercises)
 
     const handleUserDataOnly = () => {
         if (userDataOnly === "") {
@@ -40,18 +45,18 @@ export const ExerciseList = () => {
     return (
         <>
         <h1>Exercises</h1>
-        <div className="form-group">
+        <h3 style={{textAlign:"center"}}>
             <label htmlFor="isUser">Current Player Data Only</label>
             <input type="checkbox" checked={userDataOnly} onChange={handleUserDataOnly} />
-          </div>
-        <div className="searchWrapper">
+        </h3>
+        <h3 style={{textAlign:"center"}}  className="category-dropdown-container">
             Search: <input type="text" className="btn search" onKeyUp={(event) => {
               setSearchTerms(event.target.value)}}
                 placeholder="Search Exercises... " />
-        </div>
+        </h3>
         <fieldset>
-            <label htmlFor="category">Category: </label>
-                <select value={categoryTerms} name="categoryId" id="categoryId" onChange={(event) => {
+            <h3>Category: </h3>
+                <select className="form-control-category" value={categoryTerms} name="categoryId" id="categoryId" onChange={(event) => {
                     setCategoryTerms(event.target.value)
                     // setCategory(event.target.value)
                 }}>
@@ -59,8 +64,8 @@ export const ExerciseList = () => {
                     {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
 				</select>
         </fieldset>
-        <div>
-        {exercises?.map(exercise => {
+        <div className="practicePlans">
+        {alphabeticalExercises?.map(exercise => {
             const ExerciseDetail = (props) => {
                 const {buttonLabel, className} = props;
             
@@ -95,8 +100,10 @@ export const ExerciseList = () => {
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
                             <>
+                            <div className="container--login">
                             <div key={exercisePlan.id}>
                             <strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong>
+                            </div>
                             </div>
                             </>
                         )
@@ -108,16 +115,21 @@ export const ExerciseList = () => {
             }
             return (
             <>
-                <div className="exercise" key={exercise.id}><ExerciseDetail /></div>
+            <div className="practicePlan">
+                <div key={exercise.id}><ExerciseDetail /></div>
                 {exercise.is_creator ? (
                     <>
-                <button onClick={() => {history.push(`/exercises/edit/${exercise.id}`)}}>Edit</button>
-                <button onClick={() => {history.push("/exercises"); deleteExercise(exercise.id)}}>Delete</button> </>) : (<> </>)
+                    <div className="practicePlan-buttons">
+                <button className="btn" onClick={() => {history.push(`/exercises/edit/${exercise.id}`)}}>Edit</button>
+                <button className="btn" onClick={() => {history.push("/exercises"); deleteExercise(exercise.id)}}>Delete</button> </div> </>) : (<> </>)
                 }
+                </div>
             </>
         )})}
         </div>
-        <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create New Exercise?</button>
+        <fieldset  style={{textAlign:"center"}}>
+        <button className="btn" onClick={() => history.push("/exercises/create")}>Create New Exercise?</button>
+        </fieldset>
         </>
     )
 }
