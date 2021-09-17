@@ -88,6 +88,8 @@ export const PracticePlanForm = () => {
     }, [practicePlanId])
 
     return (
+        <>
+        <div className="category-container">
         <form className="form--practicePlan" id="practicePlanForm">
             <div>
                 <h1>{practicePlanId ? "Edit Practice Plan" : "Create a Practice Plan"}</h1>
@@ -158,5 +160,7 @@ export const PracticePlanForm = () => {
             </fieldset>
             </div>
         </form>
+        </div>
+        </>
     )
 }

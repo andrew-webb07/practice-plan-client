@@ -60,6 +60,8 @@ export const CategoryForm = () => {
     }, [categoryId])
 
     return (
+        <>
+        <div className="category-container">
         <form className="form--category" id="categoryForm">
             <div>
                 <h1>{categoryId ? "Edit Category": "Create a Category"}</h1>
@@ -76,5 +78,7 @@ export const CategoryForm = () => {
             </fieldset>
             </div>
         </form>
+        </div>
+        </>
     )
 }

@@ -7,6 +7,11 @@ export const PracticePlanList = () => {
     const { getPracticePlans, practicePlans, deletePracticePlan, userPracticePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     const [ userDataOnly, setUserDataOnly ] = useState("")
+    const alphabeticalPracticePlans = practicePlans.sort((a, b) => {
+        const textA = a.title.toUpperCase();
+        const textB = b.title.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+    })
 
     const handleUserDataOnly = () => {
         if (userDataOnly === "") {
@@ -29,7 +34,7 @@ export const PracticePlanList = () => {
             onChange={handleUserDataOnly} />
             </h3>
           <div className="practicePlans">
-            {practicePlans.map(practicePlan => {
+            {alphabeticalPracticePlans.map(practicePlan => {
                 const PracticePlanDetail = (props) => {
                     const {
                     buttonLabel,

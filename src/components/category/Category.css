@@ -12,7 +12,12 @@
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     color: white;
-    margin: 4em 28em 28em 28em;
+    margin: 4em 28em 4em 28em;
     padding-bottom: 2em;
     border-radius: 1em;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
 }

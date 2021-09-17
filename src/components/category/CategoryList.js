@@ -23,21 +23,23 @@ export const CategoryList = () => {
     return (
         <>
         <h1>Categories</h1>
-        <div className="form-group">
+        <h3 style={{textAlign:"center"}}>
             <label htmlFor="isUser">Current Player Data Only</label>
-            <input type="checkbox"
-            onChange={handleUserDataOnly} />
-          </div>
-        <div>
+            <input type="checkbox" checked={userDataOnly} onChange={handleUserDataOnly} />
+        </h3>
+        <div className="practicePlans">
             {categories?.map(category => {
                 return (
                     <>
-                    <div>{category.label}</div>
+                    <div className="practicePlan">
+                    <div style={{textAlign:"center"}}>{category.label}</div>
                     {category.is_creator ? (
                     <>
-                <button onClick={() => {history.push(`/categories/edit/${category.id}`)}}>Edit</button>
-                <button onClick={() => {history.push("/categories"); deleteCategory(category.id)}}>Delete</button> </>) : (<> </>)
+                    <div className="practicePlan-buttons">
+                        <button className="btn" onClick={() => {history.push(`/categories/edit/${category.id}`)}}>Edit</button>
+                        <button className="btn" onClick={() => {history.push("/categories"); deleteCategory(category.id)}}>Delete</button> </div> </>) : (<> </>)
                 }
+                </div>
                     </>
                 )
             })}
