@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Auth.css";
+import Practice_Plan_NO_BORDER_02 from "../images/Practice_Plan_NO_BORDER_02.png"
 
 
 export const Register = () => {
@@ -60,7 +61,9 @@ export const Register = () => {
 			
 			<form onSubmit={handleRegister}>
 				<div className="form--register">
-				<h1>Register Practice Plan Player</h1>
+				<div className="logoContainer">
+            <img src={Practice_Plan_NO_BORDER_02} alt="logo" className="logo" />
+        </div>
 					<fieldset>
 						<input
 							ref={firstName}

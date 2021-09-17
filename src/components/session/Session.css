@@ -17,6 +17,25 @@
     border-radius: 1em;
 }
 
+.session {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-position-x: right;
+    z-index: 1;
+    min-height: 10em;
+    min-width: 20em;
+    background-color: rgb(144 92 92);
+    box-shadow: #191919 0.7em 0.7em 1em 3px;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    color: white;
+    /* margin: 4em 4em 4em 4em; */
+    padding: 2em;
+    border-radius: 1em;
+}
+
 .practicePlan-detail-container {
     display: flex;
     flex-direction: column;
@@ -31,13 +50,46 @@
     text-align: center;
 }
 
-/* .practicePlan-detail-container {
-    flex-basis: 28%;
-    margin: 1em;
-    padding: 1em;
-    background-color: rgb(78, 78, 78, .9);
-    box-shadow: black 0.2em 0.2em 0.2em;
+.practicePlan-buttons {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-} */
+    justify-content: center;
+}
+
+.practicePlan-button {
+    margin: 0em 10em;
+    width: 20em;
+    text-align: center;
+    padding: .5em 1.5em;
+    box-shadow: black 0 0 .2em;
+    border-radius: 2em;
+}
+
+.sessionsHeader {
+    text-shadow: -2.2px -2.2px 0 #000, 2.2px -2.2px 0 #000, -2.2px 2.2px 0 #000,
+    2.2px 2.2px 0 #000;
+}
+
+.sessions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.btn-to-form {
+  text-align: center;
+  margin-top: 2em;
+  padding: .5em 5em;
+  box-shadow: black 0 0 .2em;
+  flex-basis: 25%;
+  border-radius: 2em;
+}
+
+.session-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+}

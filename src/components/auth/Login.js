@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
+import Practice_Plan_NO_BORDER_02 from "../images/Practice_Plan_NO_BORDER_02.png"
 
 export const Login = () => {
     const username = useRef()
@@ -42,7 +43,9 @@ export const Login = () => {
             </dialog>
 
                 <form className="form--login" onSubmit={handleLogin}>
-                <h1 className="loginHeader">Practice Plan</h1>
+                <div className="logoContainer">
+                    <img src={Practice_Plan_NO_BORDER_02} alt="logo" className="logo" />
+                </div>
                 <h3>Please Sign In</h3>
                     <fieldset>
                         <input ref={username} type="text" id="username" className="form-control" placeholder="Username" required autoFocus />
