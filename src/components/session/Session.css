@@ -93,3 +93,7 @@
     display: flex;
     justify-content: center;
 }
+
+.model-text {
+    display: flex;
+}

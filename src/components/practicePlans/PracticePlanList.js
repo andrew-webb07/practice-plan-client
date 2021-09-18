@@ -51,18 +51,29 @@ export const PracticePlanList = () => {
                         <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>
-                        <h3>{practicePlan.title}</h3>
-                            <div>Player: {practicePlan.player.user.username}</div>
-                            <div>Plan Description: {practicePlan.description}</div>
-                            <h4>Exercises</h4>
-                            {practicePlan.exercises.map(exercise => {
-                                return (
-                                    <>
-                                        <div><strong>{exercise.title}</strong></div>
-                                        <div>{exercise.description}</div>
-                                    </>
-                                )
-                            })}
+                    <h1><u>Practice Plan</u></h1>
+                    <h2>{practicePlan.title}</h2>
+                    <div className="modal-text">
+                        <div><strong>Player</strong></div>
+                        <div>  -  {practicePlan.player.user.username}</div>
+                        <br></br>
+                        <div><strong>Plan Description</strong></div>
+                        <div>  -  {practicePlan.description}</div>
+                        <h3>Exercises</h3>
+                        <ol>
+                        {practicePlan.exercises.map(exercise => {
+                            return (
+                                <>
+                                    <li><strong>{exercise.title}</strong></li>
+                                    <ul>
+                                    <li>  -  {exercise.description}</li>
+                                    </ul>
+                                    <br></br>
+                                </>
+                            )
+                        })}
+                        </ol>
+                    </div>
                         </ModalBody>
                         </Modal>
                     </div>

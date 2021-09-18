@@ -13,9 +13,6 @@ export const SessionList = () => {
     const completedSessions = sessions.filter(session => Date.parse(session.date) < today)
     const scheduledSessions = sessions.filter(session => Date.parse(session.date) >= today)
 
-    
-    
-
     useEffect(() => {
         getSessions()       
     }, [])
@@ -30,7 +27,7 @@ export const SessionList = () => {
             <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create Practice Plan?</button>
             <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create Practice Exercise?</button>
         </div>
-            <h1 className="sessionsHeader">Scheduled Sessions</h1>
+            <h1>Scheduled Sessions</h1>
         <div className="sessions">
         {scheduledSessions.map(session => {
             const PracticePlanDetail = (props) => {
@@ -49,18 +46,29 @@ export const SessionList = () => {
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
                     <ModalBody>
-                    <h3>{session.practice_plan.title}</h3>
-                        <div>Player: {session.player.user.username}</div>
-                        <div>Plan Description: {session.practice_plan.description}</div>
-                        <h4>Exercises</h4>
+                    <h1><u>Practice Plan</u></h1>
+                    <h2>{session.practice_plan.title}</h2>
+                    <div className="modal-text">
+                        <div><strong>Player</strong></div>
+                        <div>  -  {session.player.user.username}</div>
+                        <br></br>
+                        <div><strong>Plan Description</strong></div>
+                        <div>  -  {session.practice_plan.description}</div>
+                        <h3>Exercises</h3>
+                        <ol>
                         {session.practice_plan.exercises.map(exercise => {
                             return (
                                 <>
-                                    <div>{exercise.title}</div>
-                                    <div>{exercise.description}</div>
+                                    <li><strong>{exercise.title}</strong></li>
+                                    <ul>
+                                    <li>  -  {exercise.description}</li>
+                                    </ul>
+                                    <br></br>
                                 </>
                             )
                         })}
+                        </ol>
+                    </div>
                     </ModalBody>
                     </Modal>
                 </div>
@@ -100,18 +108,29 @@ export const SessionList = () => {
                         <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>
-                        <h3>{session.practice_plan.title}</h3>
-                            <div>Player: {session.player.user.username}</div>
-                            <div>Plan Description: {session.practice_plan.description}</div>
-                            <h4>Exercises</h4>
-                            {session.practice_plan.exercises.map(exercise => {
-                                return (
-                                    <>
-                                        <div>{exercise.title}</div>
-                                        <div>{exercise.description}</div>
-                                    </>
-                                )
-                            })}
+                        <h1><u>Practice Plan</u></h1>
+                    <h2>{session.practice_plan.title}</h2>
+                    <div className="modal-text">
+                        <div><strong>Player</strong></div>
+                        <div>  -  {session.player.user.username}</div>
+                        <br></br>
+                        <div><strong>Plan Description</strong></div>
+                        <div>  -  {session.practice_plan.description}</div>
+                        <h3>Exercises</h3>
+                        <ol>
+                        {session.practice_plan.exercises.map(exercise => {
+                            return (
+                                <>
+                                    <li><strong>{exercise.title}</strong></li>
+                                    <ul>
+                                    <li>  -  {exercise.description}</li>
+                                    </ul>
+                                    <br></br>
+                                </>
+                            )
+                        })}
+                        </ol>
+                    </div>
                         </ModalBody>
                         </Modal>
                     </div>

@@ -18,19 +18,24 @@ export const PracticePlanDetail = () => {
     }, [practicePlanId])
     return (
         <>
-            <h1>Practice Plan Detail</h1>
-            <div>
-                <div>User: {practicePlan.player?.user.username}</div>
-                <div>Plan: {practicePlan.title}</div>
-                <div>{practicePlan.description}</div>
+        <div className="practicePlanDetail-container">
+            <div className="practicePlanDetail">
+            <h1><u>Practice Plan</u></h1>
+            <h2>{practicePlan.title}</h2>
+            <div className="practicePlanDetail-text">
+            <div><strong>Player</strong></div>
+                <div>  -  {practicePlan.player?.user.username}</div>
+                <br />
+                <div><strong>Plan Description</strong></div>
+                <div>  -  {practicePlan.description}</div>
+                <h3>Exercises</h3>
+                <ol>
                 {practicePlan?.exercises?.map(exercise => {
                 const ExerciseDetail = (props) => {
                     const {
                     buttonLabel,
                     className
                     } = props;
-
-                // getExercisePlans(exercise).then((res) => {setExercisePlans(res)})
             
                 const [modal, setModal] = useState(false);
             
@@ -48,25 +53,37 @@ export const PracticePlanDetail = () => {
   
                 return (
                 <div>
-                    <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>Exercise: {exercise.title}</strong></u></div>
+                    <li color="danger" onClick={toggle}>{buttonLabel} <u><strong>Exercise: {exercise.title}</strong></u></li>
+                    <br/>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
                     <ModalBody>
+                    <h2><u>Exercise</u></h2>
                     <h3>{exercise.title}</h3>
-                        <div>Player: {exercise.player.user.username}</div>
-                        <div>Description: {exercise.description}</div>
-                        <div>Category: {exercise.category.label}</div>
-                        <div>Example: {exercise.example_picture}</div>
+                        <div><strong>Player</strong></div>
+                        <div>  -  {exercise.player.user.username}</div>
+                        <br></br>
+                        <div><strong>Plan Description</strong></div>
+                        <div>  -  {exercise.description}</div>
+                        <br></br>
+                        <div><strong>Category</strong></div>
+                        <div>  -  {exercise.category.label}</div>
+                        <br></br>
+                        <div style={{textAlign:"center"}}><strong>Example</strong></div>
+                        <div className="exercise-picture-container">
+                            <img className="exercise-picture" src={exercise.example_picture}></img>
+                        </div>
                     <h4>Practice Plans Exercise Is On</h4>
+                    <ol>
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
                             <>
-                            <div>
-                            <strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong>
-                            </div>
+                            <li key={exercisePlan.id}><strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
+                            <br />
                             </>
                         )
                     })}
+                    </ol>
                     </ModalBody>
                     </Modal>
                 </div>
@@ -77,6 +94,9 @@ export const PracticePlanDetail = () => {
                 <div className="exercise"><ExerciseDetail /></div>
             </>
         )})}
+        </ol>
+            </div>
+            </div>
             </div>
         </>
     )

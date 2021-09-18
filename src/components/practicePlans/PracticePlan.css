@@ -50,7 +50,7 @@
     background-color: rgb(144 92 92);
     box-shadow: #191919 0.7em 0.7em 1em 3px;
     color: white;
-    /* width: 12em; */
+    width: 12em;
     padding: 2em;
     border-radius: 1em;
     margin: 2em 1em;
@@ -66,3 +66,27 @@
     display: flex;
     justify-content: center;
 }
+
+.practicePlanDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-position-x: right;
+    background-color: rgb(144 92 92);
+    box-shadow: #191919 0.7em 0.7em 1em 3px;
+    color: white;
+    width: 35em;
+    padding: 2em 5em 5em 5em;
+    border-radius: 1em;
+    margin: 2em 1em;
+}
+
+.practicePlanDetail-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* .practicePlanDetail-container {
+    padding-left: 35em;
+} */

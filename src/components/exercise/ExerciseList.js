@@ -89,25 +89,32 @@ export const ExerciseList = () => {
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
                     <ModalBody>
+                    <h2><u>Exercise</u></h2>
                     <h3>{exercise.title}</h3>
-                        <div>Player: {exercise.player.user.username}</div>
-                        <div>Description: {exercise.description}</div>
-                        <div>Category: {exercise.category.label}</div>
-                        <div>
-                            <img src={exercise.example_picture}></img>
+                        <div><strong>Player</strong></div>
+                        <div>  -  {exercise.player.user.username}</div>
+                        <br></br>
+                        <div><strong>Plan Description</strong></div>
+                        <div>  -  {exercise.description}</div>
+                        <br></br>
+                        <div><strong>Category</strong></div>
+                        <div>  -  {exercise.category.label}</div>
+                        <br></br>
+                        <div style={{textAlign:"center"}}><strong>Example</strong></div>
+                        <div className="exercise-picture-container">
+                            <img className="exercise-picture" src={exercise.example_picture}></img>
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
+                    <ol>
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
                             <>
-                            <div className="container--login">
-                            <div key={exercisePlan.id}>
-                            <strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong>
-                            </div>
-                            </div>
+                            <li key={exercisePlan.id}><strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
+                            <br />
                             </>
                         )
                     })}
+                    </ol>
                     </ModalBody>
                     </Modal>
                 </div>
@@ -127,7 +134,7 @@ export const ExerciseList = () => {
             </>
         )})}
         </div>
-        <fieldset  style={{textAlign:"center"}}>
+        <fieldset style={{textAlign:"center"}}>
         <button className="btn" onClick={() => history.push("/exercises/create")}>Create New Exercise?</button>
         </fieldset>
         </>
