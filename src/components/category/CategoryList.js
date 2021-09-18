@@ -8,6 +8,13 @@ export const CategoryList = () => {
     const history = useHistory()
     const [ userDataOnly, setUserDataOnly ] = useState("")
 
+    const alphabeticalCategories = categories.sort((a, b) => {
+        const textA = a.label.toUpperCase();
+        const textB = b.label.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+    })
+    console.log(alphabeticalCategories)
+
     const handleUserDataOnly = () => {
         if (userDataOnly === "") {
             setUserDataOnly(true)
@@ -28,7 +35,7 @@ export const CategoryList = () => {
             <input type="checkbox" checked={userDataOnly} onChange={handleUserDataOnly} />
         </h3>
         <div className="practicePlans">
-            {categories?.map(category => {
+            {alphabeticalCategories?.map(category => {
                 return (
                     <>
                     <div className="practicePlan">
