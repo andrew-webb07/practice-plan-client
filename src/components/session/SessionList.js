@@ -42,7 +42,8 @@ export const SessionList = () => {
   
                 return (
                 <div>
-                    <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{session.practice_plan.title}</strong></u></div>
+                    <div className="link" color="danger" onClick={toggle}>{buttonLabel} <u><strong>{session.practice_plan.title}</strong></u></div>
+                    <br/>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
                     <ModalBody>
@@ -104,7 +105,8 @@ export const SessionList = () => {
       
                     return (
                     <div>
-                        <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{session.practice_plan.title}</strong></u></div>
+                        <div className="link" color="danger" onClick={toggle}>{buttonLabel} <u><strong>{session.practice_plan.title}</strong></u></div>
+                        <br />
                         <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>

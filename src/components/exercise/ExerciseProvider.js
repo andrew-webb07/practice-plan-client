@@ -62,7 +62,7 @@ export const ExerciseProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
         })
-        .then(getExercises)
+        .then(() => searchExercises("", "", ""))
     }
 
     return (

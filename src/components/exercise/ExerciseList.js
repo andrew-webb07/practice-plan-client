@@ -9,7 +9,7 @@ export const ExerciseList = () => {
     const { getExercises, exercises, deleteExercise, searchExercises } = useContext(ExerciseContext)
     const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
     const history = useHistory()
-    const { getCategories, categories } = useContext(CategoryContext)
+    const { userCategories, categories } = useContext(CategoryContext)
     const [ userDataOnly, setUserDataOnly ] = useState("")
     const [ searchTerms, setSearchTerms ] = useState("")
     const [ categoryTerms, setCategoryTerms ] = useState("")
@@ -29,16 +29,8 @@ export const ExerciseList = () => {
         }
     }
 
-
-
     useEffect(() => {
-        // getExercises()
-        // .then(setAllExercises)
-        getPracticePlans()
-        getCategories()
-    }, [])
-
-    useEffect(() => {
+        userCategories("")
         searchExercises(searchTerms, categoryTerms, userDataOnly)
     }, [ searchTerms, categoryTerms, userDataOnly])
 
@@ -50,7 +42,7 @@ export const ExerciseList = () => {
             <input type="checkbox" checked={userDataOnly} onChange={handleUserDataOnly} />
         </h3>
         <h3 style={{textAlign:"center"}}  className="category-dropdown-container">
-            Search: <input type="text" className="btn search" onKeyUp={(event) => {
+            Search: <input type="text" className="search" onKeyUp={(event) => {
               setSearchTerms(event.target.value)}}
                 placeholder="Search Exercises... " />
         </h3>
@@ -85,7 +77,7 @@ export const ExerciseList = () => {
   
                 return (
                 <div key={exercise.id}>
-                    <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{exercise.title}</strong></u></div>
+                    <div className="link" color="danger" onClick={toggle}>{buttonLabel} <u><strong>{exercise.title}</strong></u></div>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
                     <ModalBody>
@@ -109,7 +101,7 @@ export const ExerciseList = () => {
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
                             <>
-                            <li key={exercisePlan.id}><strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
+                            <li key={exercisePlan.id}><strong><Link className="link"  to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
                             <br />
                             </>
                         )
@@ -128,7 +120,7 @@ export const ExerciseList = () => {
                     <>
                     <div className="practicePlan-buttons">
                 <button className="btn" onClick={() => {history.push(`/exercises/edit/${exercise.id}`)}}>Edit</button>
-                <button className="btn" onClick={() => {history.push("/exercises"); deleteExercise(exercise.id)}}>Delete</button> </div> </>) : (<> </>)
+                <button className="btn" onClick={() => {deleteExercise(exercise.id).then(history.push("/exercises"))}}>Delete</button> </div> </>) : (<> </>)
                 }
                 </div>
             </>

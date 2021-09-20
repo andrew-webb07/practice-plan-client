@@ -41,7 +41,7 @@ export const CategoryProvider = (props) => {
                       "Content-Type": "application/json"               
             },
             body: JSON.stringify(category)
-        }).then(getCategories)
+        }).then(() => userCategories(""))
     }
 
     const editCategory = (category) => {
@@ -52,7 +52,8 @@ export const CategoryProvider = (props) => {
                 "Content-Type": "application/json"               
             },
             body: JSON.stringify(category)
-        }).then(getCategories)
+        })
+        .then(() => userCategories(""))
     }
 
     const deleteCategory = (categoryId) => {
@@ -62,7 +63,7 @@ export const CategoryProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
         })
-        .then(getCategories)
+        .then(() => userCategories(""))
     }
 
     return (

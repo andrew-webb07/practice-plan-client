@@ -47,7 +47,7 @@ export const PracticePlanList = () => {
       
                     return (
                     <div>
-                        <div color="danger" onClick={toggle}>{buttonLabel} <u><strong>{practicePlan.title}</strong></u></div>
+                        <div className="link" color="danger" onClick={toggle}>{buttonLabel} <u><strong>{practicePlan.title}</strong></u></div>
                         <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>
@@ -87,7 +87,7 @@ export const PracticePlanList = () => {
                     <>
                     <div className="practicePlan-buttons">
                     <button className="btn" onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
-                    <button className="btn" onClick={() => {history.push("/"); deletePracticePlan(practicePlan.id)}}>Delete</button>
+                    <button className="btn" onClick={() => {deletePracticePlan(practicePlan.id).then(history.push("/practiceplans"))}}>Delete</button>
                     </div> </>) : (<> </>)
                 
                 }
