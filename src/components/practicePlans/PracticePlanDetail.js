@@ -52,8 +52,8 @@ export const PracticePlanDetail = () => {
                 }
   
                 return (
-                <div>
-                    <li color="danger" onClick={toggle}>{buttonLabel} <u><strong>Exercise: {exercise.title}</strong></u></li>
+                <>
+                    <li  className="link-practicePlan-detail" color="danger" onClick={toggle}>{buttonLabel} <u><strong>Exercise: {exercise.title}</strong></u></li>
                     <br/>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                     <ModalHeader toggle={toggle}></ModalHeader>
@@ -78,7 +78,7 @@ export const PracticePlanDetail = () => {
                     {exercisePracticePlans.map(exercisePlan => {
                         return (
                             <>
-                            <li key={exercisePlan.id}><strong><Link to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
+                            <li key={exercisePlan.id}><strong><Link className="link" to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
                             <br />
                             </>
                         )
@@ -86,7 +86,7 @@ export const PracticePlanDetail = () => {
                     </ol>
                     </ModalBody>
                     </Modal>
-                </div>
+              </>
                 );
             }
             return (

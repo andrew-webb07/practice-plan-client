@@ -7,7 +7,7 @@ import "./Exercise.css"
 
 export const ExerciseForm = () => {
     const {createExercise, editExercise, deleteExercise, getExercise} = useContext(ExerciseContext)
-    const { getCategories, categories } = useContext(CategoryContext)
+    const { userCategories, categories } = useContext(CategoryContext)
 
     const [ exercise, setExercise ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +28,7 @@ export const ExerciseForm = () => {
 	};
 
     useEffect(() => {
-        getCategories()
+        userCategories("")
     }, [])
 
     const handleControlledInputChange = (event) => {

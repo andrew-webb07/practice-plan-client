@@ -120,7 +120,7 @@ export const PracticePlanForm = () => {
                 </div>
                 </fieldset>
                 <div className="category-dropdown-container">
-                Search Exercise by Text: <input type="text" className="btn search" onKeyUp={(event) => {
+                Search Exercise by Text: <input type="text" className="search" onKeyUp={(event) => {
                 setSearchTerms(event.target.value)}}
                     placeholder="Search Exercises... " />
                 </div> 
@@ -150,7 +150,7 @@ export const PracticePlanForm = () => {
 								</div>
 							</>
 						))}
-					</fieldset>
+			</fieldset>
             <fieldset style={{textAlign:"center"}}>
                 <button className="btn btn-1 btn-sep icon-send" disabled={isLoading} onClick={event => {
                     event.preventDefault()

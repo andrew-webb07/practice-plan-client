@@ -8,10 +8,13 @@ import "./Session.css"
 
 export const SessionForm = () => {
     const {createSession, editSession, getSession} = useContext(SessionContext)
-    const {getPracticePlans, practicePlans, searchPracticePlans} = useContext(PracticePlanContext)
+    const {userPracticePlans, practicePlans, searchPracticePlans} = useContext(PracticePlanContext)
     const [ session, setSession ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
+    const [ userDataOnly, setUserDataOnly ] = useState("")
+    const [ searchTerms, setSearchTerms ] = useState("")
+    const [ categoryTerms, setCategoryTerms ] = useState("")
     const [ sessionPracticePlan, setSessionPracticePlan] = useState({
         id: null,
         player: "",
@@ -28,9 +31,8 @@ export const SessionForm = () => {
     }
 
     useEffect(() => {
-        getPracticePlans()
-        searchPracticePlans()     
-    }, [])
+        searchPracticePlans(searchTerms, categoryTerms, userDataOnly)
+    }, [ searchTerms, categoryTerms, userDataOnly])
 
     const handleSaveSession = () => {
         if (sessionPracticePlan === undefined ||
@@ -80,12 +82,14 @@ export const SessionForm = () => {
     }, [sessionId])
 
     return (
+        <>
+        <div className="category-container">
         <form className="form--session" id="sessionForm">
             <div>
                 <h1>{sessionId ? "Edit Session" : "Schedule a Session"}</h1>
             <div className="category-dropdown-container">
-            Search Practice Plans: <input type="text" className="btn search" onKeyUp={(event) => {
-              searchPracticePlans(event.target.value)}}
+            Search Practice Plans: <input type="text" className="search" onKeyUp={(event) => {
+              setSearchTerms(event.target.value)}}
                 placeholder="Search Practice Plans... " />
             </div> 
             <div>
@@ -153,5 +157,7 @@ export const SessionForm = () => {
             </fieldset>
             </div>
         </form>
+        </div>
+        </>
     )
 }

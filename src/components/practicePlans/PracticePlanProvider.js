@@ -16,6 +16,16 @@ export const PracticePlanProvider = (props) => {
             .then(setPracticePlans)
     }
 
+    const searchPracticePlans = (searchTerms, categoryTerms, isUser) => {
+        return fetch(`http://localhost:8000/practiceplans?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
+            }
+        })
+        .then(res => res.json())
+        .then(setPracticePlans)
+    }
+
     const userPracticePlans = (isUser) => {
         return fetch(`http://localhost:8000/practiceplans?isUser=${isUser}`, {
             headers: {
@@ -26,15 +36,15 @@ export const PracticePlanProvider = (props) => {
         .then(setPracticePlans)
     }
 
-    const searchPracticePlans = (searchTerms) => {
-        return fetch(`http://localhost:8000/practiceplans?q=${searchTerms}`, {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
-            }
-        })
-        .then(res => res.json())
-        .then(setPracticePlans)
-    }
+    // const searchPracticePlans = (searchTerms) => {
+    //     return fetch(`http://localhost:8000/practiceplans?q=${searchTerms}`, {
+    //         headers: {
+    //             "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(setPracticePlans)
+    // }
 
     const getPracticePlan = (practicePlanId) => {
         return fetch(`http://localhost:8000/practiceplans/${practicePlanId}`, {
@@ -73,7 +83,7 @@ export const PracticePlanProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
         })
-        .then(getPracticePlans)
+        .then(() => userPracticePlans(""))
     }
 
     const getPracticePlanDetails = (practicePlanId) => {

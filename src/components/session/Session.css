@@ -56,12 +56,16 @@
 }
 
 .practicePlan-button {
-    margin: 0em 10em;
     width: 20em;
     text-align: center;
     padding: .5em 1.5em;
     box-shadow: black 0 0 .2em;
     border-radius: 2em;
+}
+
+.practicePlan-button:hover {
+	background: #afafaf;
+	color: #ffffff;
 }
 
 .sessionsHeader {
