@@ -6,7 +6,7 @@ export const SessionProvider = (props) => {
     const [ sessions, setSessions ] = useState([])
 
     const getSessions = () => {
-        return fetch("http://localhost:8000/sessions", {
+        return fetch("https://practice-plan-server.herokuapp.com/sessions", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -16,7 +16,7 @@ export const SessionProvider = (props) => {
     }
 
     const getSession = (sessionId) => {
-        return fetch(`http://localhost:8000/sessions/${sessionId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/sessions/${sessionId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -25,7 +25,7 @@ export const SessionProvider = (props) => {
     }
 
     const createSession = (session) => {
-        return fetch("http://localhost:8000/sessions", { 
+        return fetch("https://practice-plan-server.herokuapp.com/sessions", { 
             method: "POST",
             headers: {"Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
                       "Content-Type": "application/json"               
@@ -35,7 +35,7 @@ export const SessionProvider = (props) => {
     }
 
     const editSession = (session) => {
-        return fetch(`http://localhost:8000/sessions/${session.id}`, { 
+        return fetch(`https://practice-plan-server.herokuapp.com/sessions/${session.id}`, { 
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
@@ -46,7 +46,7 @@ export const SessionProvider = (props) => {
     }
 
     const deleteSession = (sessionId) => {
-        return fetch(`http://localhost:8000/sessions/${sessionId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/sessions/${sessionId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
