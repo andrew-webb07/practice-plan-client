@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { SessionContext } from "./SessionProvider.js"
-import { useHistory, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import Practice_Plan_NO_BORDER_02 from "../images/Practice_Plan_NO_BORDER_02.png"
 import "./Session.css"
 
 export const SessionList = () => {
     const { sessions, getSessions, deleteSession } = useContext(SessionContext)
     const history = useHistory()
+
+    // Sort sessions by today's date; scheduled sessions include today and future dates
     const today = new Date()
     today.setDate(today.getDate() - 1)
     const completedSessions = sessions.filter(session => Date.parse(session.date) < today)

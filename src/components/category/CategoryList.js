@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CategoryContext } from "./CategoryProvider"
-import { useHistory, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import "./Category.css"
 
 export const CategoryList = () => {
-    const { getCategories, categories, deleteCategory, userCategories } = useContext(CategoryContext)
+    const { categories, deleteCategory, userCategories } = useContext(CategoryContext)
     const history = useHistory()
     const [ userDataOnly, setUserDataOnly ] = useState("")
 
+    // Sort categories alphabetically
     const alphabeticalCategories = categories.sort((a, b) => {
         const textA = a.label.toUpperCase();
         const textB = b.label.toUpperCase();

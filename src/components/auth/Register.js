@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Auth.css";
 import Practice_Plan_NO_BORDER_02 from "../images/Practice_Plan_NO_BORDER_02.png"
@@ -159,7 +159,7 @@ export const Register = () => {
 					<fieldset style={{
                         textAlign:"center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Register Player</button>
+                        <button className="btn" type="submit">Register Player</button>
                     </fieldset>
 				<section className="link--register">
 				Already registered? <Link className="link--register" to="/login">Login</Link>

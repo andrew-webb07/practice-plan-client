@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory, Link, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { PracticePlanContext } from "./PracticePlanProvider";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export const PracticePlanDetail = () => {
     const { getPracticePlan, getPracticePlans, practicePlans} = useContext(PracticePlanContext)
     const [ practicePlan, setPracticePlan ] = useState({})
-    const history = useHistory()
     const {practicePlanId} = useParams()
 
 
@@ -43,6 +42,7 @@ export const PracticePlanDetail = () => {
 
                 let exercisePracticePlans = []
 
+                // Show all of the practice plan current exercise is on
                 for (const practicePlan of practicePlans) {
                     for (const practiceExercise of practicePlan.exercises) {
                         if( practiceExercise.id === exercise.id) {
@@ -71,7 +71,7 @@ export const PracticePlanDetail = () => {
                         <br></br>
                         <div style={{textAlign:"center"}}><strong>Example</strong></div>
                         <div className="exercise-picture-container">
-                            <img className="exercise-picture" src={exercise.example_picture}></img>
+                            <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img>
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     <ol>
