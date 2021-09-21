@@ -4,7 +4,6 @@ export const PracticePlanContext = React.createContext()
 
 export const PracticePlanProvider = (props) => {
     const [ practicePlans, setPracticePlans ] = useState([])
-    const [ practicePlan, setPracticePlan ] = useState({})
 
     const getPracticePlans = () => {
         return fetch("http://localhost:8000/practiceplans", {
@@ -35,16 +34,6 @@ export const PracticePlanProvider = (props) => {
         .then(res => res.json())
         .then(setPracticePlans)
     }
-
-    // const searchPracticePlans = (searchTerms) => {
-    //     return fetch(`http://localhost:8000/practiceplans?q=${searchTerms}`, {
-    //         headers: {
-    //             "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(setPracticePlans)
-    // }
 
     const getPracticePlan = (practicePlanId) => {
         return fetch(`http://localhost:8000/practiceplans/${practicePlanId}`, {

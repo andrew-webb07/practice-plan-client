@@ -6,14 +6,15 @@ import { PracticePlanContext } from "../practicePlans/PracticePlanProvider";
 import { CategoryContext } from "../category/CategoryProvider"
 
 export const ExerciseList = () => {
-    const { getExercises, exercises, deleteExercise, searchExercises } = useContext(ExerciseContext)
-    const { getPracticePlans, practicePlans } = useContext(PracticePlanContext)
+    const { exercises, deleteExercise, searchExercises } = useContext(ExerciseContext)
+    const { practicePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     const { userCategories, categories } = useContext(CategoryContext)
     const [ userDataOnly, setUserDataOnly ] = useState("")
     const [ searchTerms, setSearchTerms ] = useState("")
     const [ categoryTerms, setCategoryTerms ] = useState("")
 
+    // Sort exercises alphabetically
     const alphabeticalExercises = exercises.sort((a, b) => {
         const textA = a.title.toUpperCase();
         const textB = b.title.toUpperCase();
@@ -50,7 +51,6 @@ export const ExerciseList = () => {
             <h3>Category: </h3>
                 <select className="form-control-category" value={categoryTerms} name="categoryId" id="categoryId" onChange={(event) => {
                     setCategoryTerms(event.target.value)
-                    // setCategory(event.target.value)
                 }}>
                     <option value="">Select Category{" "}</option>
                     {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
@@ -94,7 +94,7 @@ export const ExerciseList = () => {
                         <br></br>
                         <div style={{textAlign:"center"}}><strong>Example</strong></div>
                         <div className="exercise-picture-container">
-                            <img className="exercise-picture" src={exercise.example_picture}></img>
+                            <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img>
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     <ol>

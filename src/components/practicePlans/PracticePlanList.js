@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory, Link, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { PracticePlanContext } from "./PracticePlanProvider";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export const PracticePlanList = () => {
-    const { getPracticePlans, practicePlans, deletePracticePlan, userPracticePlans } = useContext(PracticePlanContext)
+    const { practicePlans, deletePracticePlan, userPracticePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     const [ userDataOnly, setUserDataOnly ] = useState("")
+
+    // Sort practice plans alphabetically
     const alphabeticalPracticePlans = practicePlans.sort((a, b) => {
         const textA = a.title.toUpperCase();
         const textB = b.title.toUpperCase();

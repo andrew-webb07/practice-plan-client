@@ -56,7 +56,7 @@ export const Login = () => {
                     <fieldset style={{
                         textAlign:"center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <button className="btn" type="submit">Sign In</button>
                     </fieldset>
                     <section className="link--register">
                 <Link className="link--register" to="/register">Don't have an account yet? Click here to sign up!</Link>

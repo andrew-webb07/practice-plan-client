@@ -8,15 +8,13 @@ import "./PracticePlan.css"
 
 export const PracticePlanForm = () => {
     const {createPracticePlan, editPracticePlan, getPracticePlan} = useContext(PracticePlanContext)
-    const {getExercises, exercises, searchExercises} = useContext(ExerciseContext)
+    const { exercises, searchExercises} = useContext(ExerciseContext)
     const [ practicePlan, setPracticePlan ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
     const [ practicePlanExercises, setPracticePlanExercises] = useState([]);
     const {practicePlanId} = useParams()
-    const { getCategories, categories } = useContext(CategoryContext)
-    const [ category, setCategory ] = useState("")
-    const [ userDataOnly, setUserDataOnly ] = useState("")
+    const { userCategories, categories } = useContext(CategoryContext)
     const [ searchTerms, setSearchTerms ] = useState("")
     const [ categoryTerms, setCategoryTerms ] = useState("")
 
@@ -26,9 +24,10 @@ export const PracticePlanForm = () => {
         setPracticePlan(newPracticePlan)
     }
 
+    // Make sure form is fully filled out
     const checkForm = () => {
 		if (
-			practicePlan.title === undefined ||
+			practicePlan.title === undefined || practicePlan.title === "" || practicePlan.description === "" ||
 			practicePlan.description === undefined ||
 			practicePlanExercises.length === 0
 		) {
@@ -64,13 +63,14 @@ export const PracticePlanForm = () => {
     }
 
     useEffect(() => {
-        searchExercises(searchTerms, categoryTerms, userDataOnly)
-    }, [ searchTerms, categoryTerms, userDataOnly])
+        searchExercises(searchTerms, categoryTerms, "")
+    }, [ searchTerms, categoryTerms])
     
     useEffect(() => {
-        getCategories()
+        userCategories("")
     }, [])
 
+    // Check if user is editing a plan and get that form's data
     useEffect(() => {
         if (practicePlanId) {
             getPracticePlan(practicePlanId)
@@ -111,9 +111,7 @@ export const PracticePlanForm = () => {
                 <fieldset>
                 <div className="category-dropdown-container">
                 <label htmlFor="category">Search Exercise By Category: </label>
-                    <select className="form-control-category" value={practicePlan.categoryId} name="categoryId" id="categoryId" onChange={handleControlledInputChange} onChange={(event) => {
-                        setCategoryTerms(event.target.value)
-                    }}>
+                    <select className="form-control-category" value={practicePlan.categoryId} name="categoryId" id="categoryId" onChange={(event) => {setCategoryTerms(event.target.value)}}>
                         <option value="">Select Category{" "}</option>
                         {categories.map((category) => (<option key={category.id} value={category.label}>{category.label}</option>))}
                     </select>

@@ -1,20 +1,17 @@
 import React, { useContext, useEffect, useState } from "react"
 import { SessionContext } from "./SessionProvider"
 import { useHistory, useParams } from "react-router-dom"
-import { ExerciseContext } from "../exercise/ExerciseProvider"
 import { PracticePlanContext } from "../practicePlans/PracticePlanProvider"
 import "./Session.css"
 
 
 export const SessionForm = () => {
     const {createSession, editSession, getSession} = useContext(SessionContext)
-    const {userPracticePlans, practicePlans, searchPracticePlans} = useContext(PracticePlanContext)
+    const { practicePlans, searchPracticePlans} = useContext(PracticePlanContext)
     const [ session, setSession ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
-    const [ userDataOnly, setUserDataOnly ] = useState("")
     const [ searchTerms, setSearchTerms ] = useState("")
-    const [ categoryTerms, setCategoryTerms ] = useState("")
     const [ sessionPracticePlan, setSessionPracticePlan] = useState({
         id: null,
         player: "",
@@ -31,11 +28,11 @@ export const SessionForm = () => {
     }
 
     useEffect(() => {
-        searchPracticePlans(searchTerms, categoryTerms, userDataOnly)
-    }, [ searchTerms, categoryTerms, userDataOnly])
+        searchPracticePlans(searchTerms, "", "")
+    }, [ searchTerms ])
 
     const handleSaveSession = () => {
-        if (sessionPracticePlan === undefined ||
+        if (sessionPracticePlan === undefined || session.lengthOfSession === "" || session.date === "" || session.notes === "" ||
             session.lengthOfSession === undefined ||
             session.date === undefined ||
             session.notes === undefined){
@@ -64,6 +61,7 @@ export const SessionForm = () => {
         }}
     }
 
+    // Check if user is editing a session and get that session's data
     useEffect(() => {
         if (sessionId) {
             getSession(sessionId)
@@ -134,11 +132,10 @@ export const SessionForm = () => {
             <fieldset>
             <div className="category-dropdown-container">
                 <label htmlFor="date">Schedule: </label>
-                <input className="form-control"  type="date" id="date" name="date" required autoFocus className="form-control"
+                <input className="form-control"  type="date" id="date" name="date" required autoFocus
                 placeholder="Date"
                 onChange={handleControlledInputChange}
-                value={session.date}/>
-                
+                value={session.date}/> 
             </div>
           </fieldset>
           <fieldset>

@@ -5,7 +5,6 @@ import "./Category.css"
 
 export const CategoryForm = () => {
     const {createCategory, editCategory, getCategory} = useContext(CategoryContext)
-
     const [ category, setCategory ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
@@ -37,6 +36,7 @@ export const CategoryForm = () => {
     }
     }
     
+    // Reset form when user creates new category
     const clearForm = () => { 
         document.getElementById("categoryForm").reset();
       }
@@ -45,6 +45,7 @@ export const CategoryForm = () => {
         setIsLoading(false)
     }, [category])
 
+    // get label for category being edited
     useEffect(() => {
         if (categoryId) {
             getCategory(categoryId)
@@ -57,7 +58,7 @@ export const CategoryForm = () => {
         } else {
             setIsLoading(false)
         }
-    }, [categoryId])
+    }, [categoryId, getCategory])
 
     return (
         <>

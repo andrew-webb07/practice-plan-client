@@ -6,15 +6,15 @@ import "./Exercise.css"
 
 
 export const ExerciseForm = () => {
-    const {createExercise, editExercise, deleteExercise, getExercise} = useContext(ExerciseContext)
+    const {createExercise, editExercise, getExercise} = useContext(ExerciseContext)
     const { userCategories, categories } = useContext(CategoryContext)
-
     const [ exercise, setExercise ] = useState({})
     const [isLoading, setIsLoading] = useState(true);
 	const history = useHistory();
     const [currentPicture, setCurrentPicture] = useState("");
     const {exerciseId} = useParams()
 
+    // convert the image file into a Base64 string
     const getBase64 = (file, callback) => {
 		const reader = new FileReader();
 		reader.addEventListener("load", () => callback(reader.result));
@@ -66,6 +66,7 @@ export const ExerciseForm = () => {
     }}
     }
 
+    // get data for exercise being edited 
     useEffect(() => {
         if (exerciseId) {
             getExercise(exerciseId)
@@ -80,7 +81,7 @@ export const ExerciseForm = () => {
         } else {
             setIsLoading(false)
         }
-    }, [exerciseId])
+    }, [exerciseId, getExercise])
 
     return (
         <>
