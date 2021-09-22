@@ -6,7 +6,7 @@ export const PracticePlanProvider = (props) => {
     const [ practicePlans, setPracticePlans ] = useState([])
 
     const getPracticePlans = () => {
-        return fetch("http://localhost:8000/practiceplans", {
+        return fetch("https://practice-plan-server.herokuapp.com/practiceplans", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -16,7 +16,7 @@ export const PracticePlanProvider = (props) => {
     }
 
     const searchPracticePlans = (searchTerms, categoryTerms, isUser) => {
-        return fetch(`http://localhost:8000/practiceplans?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -26,7 +26,7 @@ export const PracticePlanProvider = (props) => {
     }
 
     const userPracticePlans = (isUser) => {
-        return fetch(`http://localhost:8000/practiceplans?isUser=${isUser}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans?isUser=${isUser}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -36,7 +36,7 @@ export const PracticePlanProvider = (props) => {
     }
 
     const getPracticePlan = (practicePlanId) => {
-        return fetch(`http://localhost:8000/practiceplans/${practicePlanId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans/${practicePlanId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -45,7 +45,7 @@ export const PracticePlanProvider = (props) => {
     }
 
     const createPracticePlan = (practicePlan) => {
-        return fetch("http://localhost:8000/practiceplans", { 
+        return fetch("https://practice-plan-server.herokuapp.com/practiceplans", { 
             method: "POST",
             headers: {"Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
                       "Content-Type": "application/json"               
@@ -55,7 +55,7 @@ export const PracticePlanProvider = (props) => {
     }
 
     const editPracticePlan = (practicePlan) => {
-        return fetch(`http://localhost:8000/practiceplans/${practicePlan.id}`, { 
+        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans/${practicePlan.id}`, { 
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
@@ -66,7 +66,7 @@ export const PracticePlanProvider = (props) => {
     }
 
     const deletePracticePlan = (practicePlanId) => {
-        return fetch(`http://localhost:8000/practiceplans/${practicePlanId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans/${practicePlanId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
@@ -77,7 +77,7 @@ export const PracticePlanProvider = (props) => {
 
     const getPracticePlanDetails = (practicePlanId) => {
 		return (
-			fetch(`http://localhost:8000/practiceplans/${practicePlanId}`,
+			fetch(`https://practice-plan-server.herokuapp.com/practiceplans/${practicePlanId}`,
 			{
 				headers: {
 					"Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,

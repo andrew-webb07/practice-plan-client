@@ -6,7 +6,7 @@ export const ExerciseProvider = (props) => {
     const [ exercises, setExercises ] = useState([])
 
     const getExercises = () => {
-        return fetch("http://localhost:8000/exercises", {
+        return fetch("https://practice-plan-server.herokuapp.com/exercises", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -16,7 +16,7 @@ export const ExerciseProvider = (props) => {
     }
 
     const searchExercises = (searchTerms, categoryTerms, isUser) => {
-        return fetch(`http://localhost:8000/exercises?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/exercises?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -26,7 +26,7 @@ export const ExerciseProvider = (props) => {
     }
 
     const getExercise = (exerciseId) => {
-        return fetch(`http://localhost:8000/exercises/${exerciseId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/exercises/${exerciseId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -35,7 +35,7 @@ export const ExerciseProvider = (props) => {
     }
 
     const createExercise = (exercise) => {
-        return fetch("http://localhost:8000/exercises", { 
+        return fetch("https://practice-plan-server.herokuapp.com/exercises", { 
             method: "POST",
             headers: {"Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
                       "Content-Type": "application/json"               
@@ -45,7 +45,7 @@ export const ExerciseProvider = (props) => {
     }
 
     const editExercise = (exercise) => {
-        return fetch(`http://localhost:8000/exercises/${exercise.id}`, { 
+        return fetch(`https://practice-plan-server.herokuapp.com/exercises/${exercise.id}`, { 
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
@@ -56,7 +56,7 @@ export const ExerciseProvider = (props) => {
     }
 
     const deleteExercise = (exerciseId) => {
-        return fetch(`http://localhost:8000/exercises/${exerciseId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/exercises/${exerciseId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`

@@ -6,7 +6,7 @@ export const CategoryProvider = (props) => {
     const [ categories, setCategories ] = useState([])
 
     const getCategories = () => {
-        return fetch("http://localhost:8000/categories", {
+        return fetch("https://practice-plan-server.herokuapp.com/categories", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -16,7 +16,7 @@ export const CategoryProvider = (props) => {
     }
 
     const userCategories = (isUser) => {
-        return fetch(`http://localhost:8000/categories?isUser=${isUser}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/categories?isUser=${isUser}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -26,7 +26,7 @@ export const CategoryProvider = (props) => {
     }
 
     const getCategory = (categoryId) => {
-        return fetch(`http://localhost:8000/categories/${categoryId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/categories/${categoryId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
@@ -35,7 +35,7 @@ export const CategoryProvider = (props) => {
     }
 
     const createCategory = (category) => {
-        return fetch("http://localhost:8000/categories", { 
+        return fetch("https://practice-plan-server.herokuapp.com/categories", { 
             method: "POST",
             headers: {"Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
                       "Content-Type": "application/json"               
@@ -45,7 +45,7 @@ export const CategoryProvider = (props) => {
     }
 
     const editCategory = (category) => {
-        return fetch(`http://localhost:8000/categories/${category.id}`, { 
+        return fetch(`https://practice-plan-server.herokuapp.com/categories/${category.id}`, { 
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`,
@@ -57,7 +57,7 @@ export const CategoryProvider = (props) => {
     }
 
     const deleteCategory = (categoryId) => {
-        return fetch(`http://localhost:8000/categories/${categoryId}`, {
+        return fetch(`https://practice-plan-server.herokuapp.com/categories/${categoryId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
