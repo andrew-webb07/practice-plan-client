@@ -71,7 +71,7 @@ export const PracticePlanDetail = () => {
                         <br></br>
                         <div style={{textAlign:"center"}}><strong>Example</strong></div>
                         <div className="exercise-picture-container">
-                        {exercise.example_picture ? <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img> : ""}
+                        {exercise.example_picture || exercise. example_picture !== "" ? <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img> : ""}
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     <ol>
