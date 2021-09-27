@@ -28,7 +28,7 @@ export const SessionForm = () => {
     }
 
     useEffect(() => {
-        searchPracticePlans(searchTerms, "", "")
+        searchPracticePlans(searchTerms, "")
     }, [ searchTerms ])
 
     const handleSaveSession = () => {

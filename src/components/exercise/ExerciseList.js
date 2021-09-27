@@ -7,7 +7,7 @@ import { CategoryContext } from "../category/CategoryProvider"
 
 export const ExerciseList = () => {
     const { exercises, deleteExercise, searchExercises } = useContext(ExerciseContext)
-    const { practicePlans } = useContext(PracticePlanContext)
+    const { practicePlans, getPracticePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     const { userCategories, categories } = useContext(CategoryContext)
     const [ userDataOnly, setUserDataOnly ] = useState("")
@@ -31,6 +31,7 @@ export const ExerciseList = () => {
     }
 
     useEffect(() => {
+        getPracticePlans()
         userCategories("")
         searchExercises(searchTerms, categoryTerms, userDataOnly)
     }, [ searchTerms, categoryTerms, userDataOnly])
@@ -98,7 +99,7 @@ export const ExerciseList = () => {
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     <ol>
-                    {exercisePracticePlans.map(exercisePlan => {
+                    {exercisePracticePlans?.map(exercisePlan => {
                         return (
                             <>
                             <li key={exercisePlan.id}><strong><Link className="link"  to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>
