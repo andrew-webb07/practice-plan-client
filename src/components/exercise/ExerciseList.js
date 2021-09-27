@@ -7,7 +7,7 @@ import { CategoryContext } from "../category/CategoryProvider"
 
 export const ExerciseList = () => {
     const { exercises, deleteExercise, searchExercises } = useContext(ExerciseContext)
-    const { practicePlans } = useContext(PracticePlanContext)
+    const { practicePlans, getPracticePlans } = useContext(PracticePlanContext)
     const history = useHistory()
     const { userCategories, categories } = useContext(CategoryContext)
     const [ userDataOnly, setUserDataOnly ] = useState("")
@@ -31,6 +31,7 @@ export const ExerciseList = () => {
     }
 
     useEffect(() => {
+        getPracticePlans()
         userCategories("")
         searchExercises(searchTerms, categoryTerms, userDataOnly)
     }, [ searchTerms, categoryTerms, userDataOnly])
@@ -94,11 +95,11 @@ export const ExerciseList = () => {
                         <br></br>
                         <div style={{textAlign:"center"}}><strong>Example</strong></div>
                         <div className="exercise-picture-container">
-                            {exercise.example_picture ? <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img> : ""}
+                            {exercise.example_picture !== null ? <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img> : ""}
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     <ol>
-                    {exercisePracticePlans.map(exercisePlan => {
+                    {exercisePracticePlans?.map(exercisePlan => {
                         return (
                             <>
                             <li key={exercisePlan.id}><strong><Link className="link"  to={`/practiceplans/${exercisePlan.id}`}>{exercisePlan.title}</Link></strong></li>

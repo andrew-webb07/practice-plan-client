@@ -15,8 +15,8 @@ export const PracticePlanProvider = (props) => {
             .then(setPracticePlans)
     }
 
-    const searchPracticePlans = (searchTerms, categoryTerms, isUser) => {
-        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans?q=${searchTerms}&category=${categoryTerms}&isUser=${isUser}`, {
+    const searchPracticePlans = (searchTerms, isUser) => {
+        return fetch(`https://practice-plan-server.herokuapp.com/practiceplans?q=${searchTerms}&isUser=${isUser}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("practice-plan_user_token")}`
             }
