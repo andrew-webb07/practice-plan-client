@@ -74,7 +74,8 @@ export const ExerciseForm = () => {
                 setExercise({
                     title: exercise.title,
                     description: exercise.description,
-                    categoryId: parseInt(exercise.category.id)
+                    categoryId: parseInt(exercise.category.id),
+                    examplePicture: ""
                 })
                 setIsLoading(false)
             })
