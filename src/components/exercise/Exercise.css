@@ -62,3 +62,25 @@
     display:flex;
     justify-content: center;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.example-picture {
+    border: 2px solid white;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor:pointer;
+    text-align: center;
+    box-shadow: black 0 0 .2em;
+    border-radius: 2em;
+    background-color: white;
+    color: black;
+    font-size:small;
+}
+
+.example-picture:hover {
+	background: #afafaf;
+	color: rgb(144 92 92);
+}
