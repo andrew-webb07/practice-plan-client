@@ -115,8 +115,9 @@ export const ExerciseForm = () => {
             </fieldset>
             <fieldset >
                 <div className="picture-form-container">
-                <label htmlFor="examplePicture">Example of Exercise: </label>
-				<input type="file" id="examplePicture" onChange={createExerciseImageString}/>
+                <label htmlFor="examplePicture" class="example-picture"> Upload Example of Exercise 
+				<input type="file" size="60" id="examplePicture" onChange={createExerciseImageString}/>
+                </label>
                 </div>
 			</fieldset >
             <fieldset style={{textAlign:"center"}}>
