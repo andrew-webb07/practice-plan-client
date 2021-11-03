@@ -87,7 +87,7 @@ export const PracticePlanList = () => {
                     <PracticePlanDetail />
                     {practicePlan.is_creator ? (
                     <>
-                    <div className="practicePlan-buttons">
+                    <div className="session-buttons">
                     <button className="btn" onClick={() => {history.push(`/practiceplans/edit/${practicePlan.id}`)}}>Edit</button>
                     <button className="btn" onClick={() => {deletePracticePlan(practicePlan.id).then(history.push("/practiceplans"))}}>Delete</button>
                     </div> </>) : (<> </>)
