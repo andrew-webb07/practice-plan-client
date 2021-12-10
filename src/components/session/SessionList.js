@@ -14,6 +14,11 @@ export const SessionList = () => {
     today.setDate(today.getDate() - 1)
     const completedSessions = sessions.filter(session => Date.parse(session.date) < today)
     const scheduledSessions = sessions.filter(session => Date.parse(session.date) >= today)
+    let currentPlayerTotalMinutes = 0
+
+    for(const session of completedSessions) {
+        currentPlayerTotalMinutes += parseInt(session.length_of_session)
+    }
 
     useEffect(() => {
         getSessions()       
@@ -28,6 +33,9 @@ export const SessionList = () => {
             <button className="practicePlan-button" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
             <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create Practice Plan?</button>
             <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create Practice Exercise?</button>
+        </div>
+        <div className="session">
+            <h1>Hello You've Practiced a Total of {currentPlayerTotalMinutes} minutes!</h1>
         </div>
             <h1>Scheduled Sessions</h1>
         <div className="sessions">
@@ -81,7 +89,7 @@ export const SessionList = () => {
             <>
             <div className="session">
             <PracticePlanDetail />
-            <div>{session.date} {session.length_of_session} minutes</div>
+            <div>{session.date} - Session Length: {session.length_of_session} minutes</div>
             <div>Length of Each Exercise: {session.length_of_each_exercise} minutes</div>
             <div>Notes: {session.notes}</div>
             <div className="session-buttons">
@@ -144,7 +152,7 @@ export const SessionList = () => {
             <>
             <div className="session">
             <PracticePlanDetail />
-            <div>{session.date} {session.length_of_session} minutes</div>
+            <div>{session.date} - Session Length: {session.length_of_session} minutes</div>
             <div>Length of Each Exercise: {session.length_of_each_exercise} minutes</div>
             <div>Notes: {session.notes}</div>
             <div className="session-buttons">
