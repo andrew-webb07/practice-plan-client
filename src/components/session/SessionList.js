@@ -15,6 +15,7 @@ export const SessionList = () => {
     const completedSessions = sessions.filter(session => Date.parse(session.date) < today)
     const scheduledSessions = sessions.filter(session => Date.parse(session.date) >= today)
     let currentPlayerTotalMinutes = 0
+    const currentUser = localStorage.getItem("practice-plan_username")
 
     for(const session of completedSessions) {
         currentPlayerTotalMinutes += parseInt(session.length_of_session)
@@ -35,7 +36,7 @@ export const SessionList = () => {
             <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create Practice Exercise?</button>
         </div>
         <div className="session">
-            <h1>Hello You've Practiced a Total of {currentPlayerTotalMinutes} minutes!</h1>
+            <h1>Hello {currentUser}! You've Practiced a Total of {currentPlayerTotalMinutes} minutes!</h1>
         </div>
             <h1>Scheduled Sessions</h1>
         <div className="sessions">
