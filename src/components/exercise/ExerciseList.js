@@ -13,6 +13,7 @@ export const ExerciseList = () => {
     const [ userDataOnly, setUserDataOnly ] = useState("")
     const [ searchTerms, setSearchTerms ] = useState("")
     const [ categoryTerms, setCategoryTerms ] = useState("")
+    const [urlError, setUrlError ] = useState(false)
 
     // Sort exercises alphabetically
     const alphabeticalExercises = exercises.sort((a, b) => {
@@ -21,6 +22,10 @@ export const ExerciseList = () => {
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
     })
     console.log(alphabeticalExercises)
+
+    const onError = () => {
+        setUrlError(true)
+    }
 
     const handleUserDataOnly = () => {
         if (userDataOnly === "") {
@@ -95,7 +100,7 @@ export const ExerciseList = () => {
                         <br></br>
                         <div style={{textAlign:"center"}}><strong>Example</strong></div>
                         <div className="exercise-picture-container">
-                            {exercise.example_picture !== null && exercise.example_picture !== "" ? <img className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img> : ""}
+                            {exercise.example_picture !== null && exercise.example_picture !== "" && !urlError ? <img onError={onError}  className="exercise-picture" alt="exercise-example" src={exercise.example_picture}></img> : ""}
                         </div>
                     <h4>Practice Plans Exercise Is On</h4>
                     <ol>
