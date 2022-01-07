@@ -14,11 +14,16 @@ export const SessionList = () => {
     today.setDate(today.getDate() - 1)
     const completedSessions = sessions.filter(session => Date.parse(session.date) < today)
     const scheduledSessions = sessions.filter(session => Date.parse(session.date) >= today)
-    let currentPlayerTotalMinutes = 0
     const currentUser = localStorage.getItem("practice-plan_username")
+    let currentPlayerTotalMinutes = 0
+    let totalHours = 0
 
     for(const session of completedSessions) {
         currentPlayerTotalMinutes += parseInt(session.length_of_session)
+    }
+    if (currentPlayerTotalMinutes > 59) {
+        totalHours = Math.floor(currentPlayerTotalMinutes / 60)
+        currentPlayerTotalMinutes = currentPlayerTotalMinutes - (totalHours * 60)
     }
 
     useEffect(() => {
@@ -30,13 +35,15 @@ export const SessionList = () => {
         <div className="logoContainer">
             <img src={Practice_Plan_NO_BORDER_02} alt="logo" className="logo" />
         </div>
+        <div className="greeting">
+            {
+                totalHours > 1 ? <h1>Hello {currentUser}! You've Practiced a Total of {totalHours} hours and {currentPlayerTotalMinutes} minutes!</h1> : totalHours === 1 ? <h1>Hello {currentUser}! You've Practiced a Total of {totalHours} hour and {currentPlayerTotalMinutes} minutes!</h1> : <h1>Hello {currentUser}! You've Practiced a Total of {currentPlayerTotalMinutes} minutes!</h1>
+            }
+        </div>
         <div className="practicePlan-buttons">
             <button className="practicePlan-button" onClick={() => history.push("/sessions/create")}>Schedule Session?</button>
             <button className="practicePlan-button" onClick={() => history.push("/practiceplans/create")}>Create Practice Plan?</button>
             <button className="practicePlan-button" onClick={() => history.push("/exercises/create")}>Create Practice Exercise?</button>
-        </div>
-        <div className="session">
-            <h1>Hello {currentUser}! You've Practiced a Total of {currentPlayerTotalMinutes} minutes!</h1>
         </div>
             <h1>Scheduled Sessions</h1>
         <div className="sessions">
